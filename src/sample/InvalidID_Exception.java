@@ -1,8 +1,8 @@
 package sample;
 
-public class InvalidIDException extends Exception {
+public class InvalidID_Exception extends Exception {
 
-    public  InvalidIDException() {
+    public InvalidID_Exception() {
         super("Invalid id.It must consist of 7 digits only.");
     }
 }

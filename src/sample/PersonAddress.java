@@ -1,2 +1,4 @@
-package sample;public class PersonAddress {
+package sample;
+
+public class PersonAddress {
 }

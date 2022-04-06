@@ -1,2 +1,4 @@
-package sample;public class Lease {
+package sample;
+
+public class Lease {
 }

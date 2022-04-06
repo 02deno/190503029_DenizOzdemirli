@@ -1,2 +1,4 @@
-package sample;public class Manager {
+package sample;
+
+public class Manager {
 }

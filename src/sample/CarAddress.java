@@ -1,2 +1,4 @@
-package sample;public class CarAddress {
+package sample;
+
+public class CarAddress {
 }

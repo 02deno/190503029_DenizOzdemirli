@@ -1,4 +1,4 @@
 package sample;
 
-public class Kunde {
+public class Customer {
 }

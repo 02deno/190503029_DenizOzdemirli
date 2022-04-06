@@ -1,2 +1,4 @@
-package sample;public class PaymentInformation {
+package sample;
+
+public class PaymentInformation {
 }
