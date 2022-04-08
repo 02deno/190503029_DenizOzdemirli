@@ -1,4 +1,70 @@
 package sample;
 
+import java.util.Date;
+
 public class PaymentInformation {
+
+    private String id;
+    private Customer customer;
+    private String cardType;
+    private String cardNumber;
+    private Date expiryDate;
+    private int cardCode;
+
+    public PaymentInformation(String id, Customer customer, String cardType, String cardNumber, Date expiryDate, int cardCode) {
+        this.id = id;
+        this.customer = customer;
+        this.cardType = cardType;
+        this.cardNumber = cardNumber;
+        this.expiryDate = expiryDate;
+        this.cardCode = cardCode;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setCardCode(int cardCode) {
+        this.cardCode = cardCode;
+    }
+
+    public int getCardCode() {
+        return cardCode;
+    }
 }

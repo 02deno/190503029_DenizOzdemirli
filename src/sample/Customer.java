@@ -5,11 +5,8 @@ import java.util.Date;
 
 public class Customer extends Person {
 
-    private String drivingLicenceNumber;
+    private String drivingLicenseNumber;
     private String phoneNumber2;
-    private Date startDate;
-    private Date endDate;
-    private double price;
     private PaymentInformation paymentInformation;
     private Car rentedCar;
     private Lease currentLease;
@@ -29,13 +26,10 @@ public class Customer extends Person {
         super(id, name, surname, address, email, phoneNumber1);
     }
 
-    public Customer(String id,String name,String surname,Address address,String email,String phoneNumber1,String drivingLicenceNumber,String phoneNumber2,Date startDate,Date endDate,double price,PaymentInformation paymentInformation,Car rentedCar,Lease currentLease,ArrayList<Lease> previousLeases,Employee supervisingEmployee) throws InvalidID_Exception {
+    public Customer(String id,String name,String surname,Address address,String email,String phoneNumber1,String drivingLicenseNumber,String phoneNumber2,PaymentInformation paymentInformation,Car rentedCar,Lease currentLease,ArrayList<Lease> previousLeases,Employee supervisingEmployee) throws InvalidID_Exception {
         super(id, name, surname, address, email, phoneNumber1);
-        this.drivingLicenceNumber = drivingLicenceNumber;
+        this.drivingLicenseNumber = drivingLicenseNumber;
         this.phoneNumber2 = phoneNumber2;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.price = price;
         this.paymentInformation = paymentInformation;
         this.rentedCar = rentedCar;
         this.currentLease = currentLease;
@@ -45,12 +39,12 @@ public class Customer extends Person {
 
 
 
-    public void setDrivingLicenceNumber(String drivingLicenceNumber) {
-        this.drivingLicenceNumber = drivingLicenceNumber;
+    public void setDrivingLicenseNumber(String drivingLicenseNumber) {
+        this.drivingLicenseNumber = drivingLicenseNumber;
     }
 
-    public String getDrivingLicenceNumber() {
-        return drivingLicenceNumber;
+    public String getDrivingLicenseNumber() {
+        return drivingLicenseNumber;
     }
 
     public void setPhoneNumber2(String phoneNumber2) {
@@ -61,29 +55,6 @@ public class Customer extends Person {
         return phoneNumber2;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public double getPrice() {
-        return price;
-    }
 
     public void setPaymentInformation(PaymentInformation paymentInformation) {
         this.paymentInformation = paymentInformation;
@@ -123,6 +94,14 @@ public class Customer extends Person {
 
     public Employee getSupervisingEmployee() {
         return supervisingEmployee;
+    }
+
+    public void setReturned(boolean returned) {
+        this.returned = returned;
+    }
+
+    public boolean isReturned() {
+        return returned;
     }
 
     @Override

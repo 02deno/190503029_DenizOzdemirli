@@ -8,6 +8,14 @@ public abstract class Address {
     protected String street;
     protected String zipCode;
 
+    public Address(String id,String country,String district,String street,String zipCode) {
+        this.id = id;
+        this.country = country;
+        this.district = district;
+        this.street = street;
+        this.zipCode = zipCode;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -46,5 +54,16 @@ public abstract class Address {
 
     public String getZipCode() {
         return zipCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id='" + id + '\'' +
+                ", country='" + country + '\'' +
+                ", district='" + district + '\'' +
+                ", street='" + street + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                '}';
     }
 }
