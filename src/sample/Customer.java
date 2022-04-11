@@ -9,8 +9,7 @@ public class Customer extends Person {
     private String phoneNumber2;
     private PaymentInformation paymentInformation;
     private Car rentedCar;
-    private Lease currentLease;
-    private ArrayList<Lease> previousLeases = new ArrayList<>();
+    private ArrayList<Lease> leases = new ArrayList<>();
     private Employee supervisingEmployee ;
     private boolean returned = false;
 
@@ -26,14 +25,13 @@ public class Customer extends Person {
         super(id, name, surname, address, email, phoneNumber1);
     }
 
-    public Customer(String id,String name,String surname,Address address,String email,String phoneNumber1,String drivingLicenseNumber,String phoneNumber2,PaymentInformation paymentInformation,Car rentedCar,Lease currentLease,ArrayList<Lease> previousLeases,Employee supervisingEmployee) throws InvalidID_Exception {
+    public Customer(String id,String name,String surname,Address address,String email,String phoneNumber1,String drivingLicenseNumber,String phoneNumber2,PaymentInformation paymentInformation,Car rentedCar,ArrayList<Lease> leases,Employee supervisingEmployee) throws InvalidID_Exception {
         super(id, name, surname, address, email, phoneNumber1);
         this.drivingLicenseNumber = drivingLicenseNumber;
         this.phoneNumber2 = phoneNumber2;
         this.paymentInformation = paymentInformation;
         this.rentedCar = rentedCar;
-        this.currentLease = currentLease;
-        this.previousLeases = previousLeases;
+        this.leases = leases;
         this.supervisingEmployee = supervisingEmployee;
     }
 
@@ -72,20 +70,14 @@ public class Customer extends Person {
         return rentedCar;
     }
 
-    public void setCurrentLease(Lease currentLease) {
-        this.currentLease = currentLease;
+
+
+    public void setLeases(ArrayList<Lease> leases) {
+        this.leases = leases;
     }
 
-    public Lease getCurrentLease() {
-        return currentLease;
-    }
-
-    public void setPreviousLeases(ArrayList<Lease> previousLeases) {
-        this.previousLeases = previousLeases;
-    }
-
-    public ArrayList<Lease> getPreviousLeases() {
-        return previousLeases;
+    public ArrayList<Lease> getLeases() {
+        return leases;
     }
 
     public void setSupervisingEmployee(Employee supervisingEmployee) {
@@ -109,9 +101,6 @@ public class Customer extends Person {
         return "Customer\n" + "Id: " + id + "\nName: " + name + "\nSurname: " + surname + "\n";
     }
 
-    public void addLease(Lease lease) {
-        previousLeases.add(lease);
-    }
 
     public void returnCar() {
         returned = true;

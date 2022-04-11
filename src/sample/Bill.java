@@ -87,4 +87,17 @@ public class Bill {
     public Lease getLease() {
         return lease;
     }
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "id='" + id + '\'' +
+                ", customer=" + customer +
+                ", car=" + car +
+                ", price=" + price +
+                ", date=" + date +
+                ", paid=" + paid +
+                ", paymentInformation=" + paymentInformation +
+                '}';
+    }
 }

@@ -19,6 +19,10 @@ public class Lease {
     private Employee supervisingEmployee;
     private Bill bill;
 
+    public Lease(String id) {
+        this.id = id;
+    }
+
     public Lease(String id, Customer customer, Car rentedCar, Date startDate, Date endDate, double price, int duration, double startKm, double endKm, double priceProKm, double insuranceCosts, boolean closed, Employee supervisingEmployee, Bill bill) {
         this.id = id;
         this.customer = customer;
@@ -150,5 +154,24 @@ public class Lease {
 
     public double calculatePrice() {
         return (endKm-startKm)*priceProKm + insuranceCosts;
+    }
+
+    @Override
+    public String toString() {
+        return "Lease{" +
+                "id='" + id + '\'' +
+                ", customer=" + customer +
+                ", rentedCar=" + rentedCar +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", price=" + price +
+                ", duration=" + duration +
+                ", startKm=" + startKm +
+                ", endKm=" + endKm +
+                ", priceProKm=" + priceProKm +
+                ", insuranceCosts=" + insuranceCosts +
+                ", closed=" + closed +
+                ", supervisingEmployee=" + supervisingEmployee +
+                '}';
     }
 }

@@ -3,9 +3,11 @@ import java.util.*;
 
 public class Employee extends Person {
 
+    private String roll = "Employee";
     private String username;
     private String password;
     private ArrayList<Customer> customers = new ArrayList<>();
+    private ArrayList<Lease> leases = new ArrayList<>();
 
     public Employee(String id) throws InvalidID_Exception {
         super(id);
@@ -24,6 +26,10 @@ public class Employee extends Person {
         this.username = username;
         this.password = password;
         this.customers = customers;
+    }
+
+    public String getRoll() {
+        return roll;
     }
 
     public void setUsername(String username) {
@@ -48,6 +54,14 @@ public class Employee extends Person {
 
     public ArrayList<Customer> getCustomers() {
         return customers;
+    }
+
+    public void setLeases(ArrayList<Lease> leases) {
+        this.leases = leases;
+    }
+
+    public ArrayList<Lease> getLeases() {
+        return leases;
     }
 
     @Override
