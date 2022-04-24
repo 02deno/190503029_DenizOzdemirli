@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="696.0" style="-fx-background-color: #189AB4#189AB4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="410.0" prefWidth="195.0" style="-fx-background-color: white;">
+         <children>
+            <Pane prefHeight="162.0" prefWidth="195.0">
+               <children>
+                  <ImageView fitHeight="161.0" fitWidth="222.0" layoutX="20.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/logo.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="194.0" style="-fx-background-color: #05445E#05445E #05445E#05445E;" text="Homepage" textFill="WHITE">
+               <padding>
+                  <Insets bottom="3.0" left="10.0" />
+               </padding>
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/homepageIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="197.0" style="-fx-background-color: #75E6DA#75E6DA; -fx-border-color: white; -fx-border-width: 5;" text="Cars" textFill="WHITE">
+               <padding>
+                  <Insets bottom="3.0" left="10.0" />
+               </padding>
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="101.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/carIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #05445E#05445E #05445E#05445E;" text="Customers" textFill="WHITE">
+               <padding>
+                  <Insets bottom="3.0" left="10.0" />
+               </padding>
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/customerIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="201.0" style="-fx-background-color: #75E6DA#75E6DA; -fx-border-color: white; -fx-border-width: 5;" text="Leases" textFill="WHITE">
+               <padding>
+                  <Insets bottom="3.0" left="10.0" />
+               </padding>
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/leaseIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="36.0" prefWidth="198.0" style="-fx-background-color: #05445E#05445E #05445E#05445E;" text="Employees" textFill="WHITE">
+               <padding>
+                  <Insets bottom="3.0" left="10.0" />
+               </padding>
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/EmployeeIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="199.0" style="-fx-background-color: #75E6DA#75E6DA; -fx-border-color: white; -fx-border-width: 5;" text="Settings" textFill="WHITE">
+               <padding>
+                  <Insets bottom="3.0" left="10.0" />
+               </padding>
+               <font>
+                  <Font size="28.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/settingsIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+      <Button alignment="BOTTOM_LEFT" layoutX="214.0" layoutY="18.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="229.0" style="-fx-background-color: #05445E#05445E #05445E#05445E;" text="Homepage" textFill="WHITE">
+         <padding>
+            <Insets bottom="3.0" left="10.0" />
+         </padding>
+         <font>
+            <Font size="40.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/homepageIcon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="218.0" layoutY="70.0" prefHeight="26.0" prefWidth="124.0" style="-fx-background-color: #75E6DA#75E6DA #75E6DA#75E6DA;" text="Options" textFill="#fcfafa">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <TreeView fx:id="treeView" layoutX="214.0" layoutY="132.0" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>
