@@ -2,30 +2,27 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="696.0" style="-fx-background-color: #189AB4#189AB4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.homepageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="696.0" style="-fx-background-color: #189AB4#189AB4;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.customersController">
    <children>
-      <VBox prefHeight="410.0" prefWidth="182.0" style="-fx-background-color: white;">
+      <VBox prefHeight="410.0" prefWidth="195.0" style="-fx-background-color: white;">
          <children>
-            <Pane prefHeight="185.0" prefWidth="191.0">
+            <Pane prefHeight="162.0" prefWidth="195.0">
                <children>
-                  <ImageView fitHeight="181.0" fitWidth="162.0" layoutX="20.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="161.0" fitWidth="222.0" layoutX="20.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/logo.jpg" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Button fx:id="homepageButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="46.0" prefWidth="194.0" style="-fx-background-color: #05445E#05445E #05445E#05445E;" text="Homepage" textFill="WHITE">
+            <Button fx:id="homepageButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToHomepages" prefHeight="46.0" prefWidth="194.0" style="-fx-background-color: #05445E#05445E #05445E#05445E;" text="Homepage" textFill="WHITE">
                <padding>
                   <Insets bottom="3.0" left="10.0" />
                </padding>
@@ -40,7 +37,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="carsButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToCars" prefHeight="42.0" prefWidth="195.0" style="-fx-background-color: #75E6DA#75E6DA; -fx-border-color: white; -fx-border-width: 5;" text="Cars" textFill="WHITE">
+            <Button fx:id="carsButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToCars" prefHeight="46.0" prefWidth="255.0" style="-fx-background-color: #75E6DA#75E6DA; -fx-border-color: white; -fx-border-width: 5;" text="Cars" textFill="WHITE">
                <padding>
                   <Insets bottom="3.0" left="10.0" />
                </padding>
@@ -48,14 +45,14 @@
                   <Font size="28.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="27.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/carIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="customersButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToCustomers" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #746C70#746C70 #746C70#746C70;" text="Customers" textFill="WHITE">
+            <Button fx:id="customersButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #746C70#746C70;" text="Customers" textFill="WHITE">
                <padding>
                   <Insets bottom="3.0" left="10.0" />
                </padding>
@@ -70,7 +67,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="leasesButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToLeases" prefHeight="46.0" prefWidth="201.0" style="-fx-background-color: #E2DED0#E2DED0 #E2DED0#E2DED0; -fx-border-color: white; -fx-border-width: 5;" text="Leases" textFill="WHITE">
+            <Button fx:id="leasesButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToLeases" prefHeight="46.0" prefWidth="201.0" style="-fx-background-color: #E2DED0#E2DED0; -fx-border-color: white; -fx-border-width: 5;" text="Leases" textFill="WHITE">
                <padding>
                   <Insets bottom="3.0" left="10.0" />
                </padding>
@@ -85,7 +82,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="employeesButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToEmployees" prefHeight="36.0" prefWidth="198.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="Employees" textFill="WHITE">
+            <Button fx:id="employeesButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToEmployees" prefHeight="36.0" prefWidth="198.0" style="-fx-background-color: #B0D2DA#B0D2DA;" text="Employees" textFill="WHITE">
                <padding>
                   <Insets bottom="3.0" left="10.0" />
                </padding>
@@ -100,7 +97,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="settingsButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="46.0" prefWidth="199.0" style="-fx-background-color: #738580#738580 #738580#738580; -fx-border-color: white; -fx-border-width: 5;" text="Settings" textFill="WHITE">
+            <Button fx:id="settingsButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToSettings" prefHeight="46.0" prefWidth="199.0" style="-fx-background-color: #738580#738580; -fx-border-color: white; -fx-border-width: 5;" text="Settings" textFill="WHITE">
                <padding>
                   <Insets bottom="3.0" left="10.0" />
                </padding>
@@ -117,31 +114,20 @@
             </Button>
          </children>
       </VBox>
-      <Button alignment="BOTTOM_LEFT" layoutX="214.0" layoutY="18.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="229.0" style="-fx-background-color: #05445E#05445E #05445E#05445E; -fx-border-color: white; -fx-border-width: 5;" text="Homepage" textFill="WHITE">
+      <Button alignment="BOTTOM_LEFT" layoutX="209.0" layoutY="20.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #746C70#746C70; -fx-border-color: white; -fx-border-width: 5;" text="Customers" textFill="WHITE">
          <padding>
             <Insets bottom="3.0" left="10.0" />
          </padding>
          <font>
-            <Font size="40.0" />
+            <Font size="28.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@image/homepageIcon.png" />
+                  <Image url="@image/customerIcon.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="213.0" layoutY="85.0" prefHeight="38.0" prefWidth="263.0" style="-fx-background-color: #F7BEC0#F7BEC0; -fx-border-color: white; -fx-border-width: 5;" text="Options-Overview" textFill="#fcfafa">
-         <font>
-            <Font size="33.0" />
-         </font>
-      </Label>
-      <TreeView fx:id="treeView" layoutX="203.0" layoutY="212.0" onContextMenuRequested="#getOption" onMouseClicked="#getOption" prefHeight="182.0" prefWidth="474.0" style="-fx-font-size: 30;" />
-      <Text fx:id="label" fill="WHITE" layoutX="212.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="472.61065673828125">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Text>
    </children>
 </AnchorPane>
