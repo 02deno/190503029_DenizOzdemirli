@@ -24,11 +24,10 @@ public class Car {
     private String insuranceCompPhoneNumber;
     private double currentKmstatus;
     private Date nextMaintenance;
-    private ArrayList<String> damages;
     private double fuelIndicator;
     private ArrayList<Customer> customers = new ArrayList<>();
 
-    public Car(String id, String name, String make, String model, String licenseNumber, int year, boolean available, Customer customer, Image image, int maxPerson, CarAddress carAddress, ArrayList<Lease> leases, double priceProKm, String insuranceCompName, String insuranceCompPhoneNumber, double currentKmstatus, Date nextMaintenance, ArrayList<String> damages, double fuelIndicator) {
+    public Car(String id, String name, String make, String model, String licenseNumber, int year, boolean available, Customer customer, Image image, int maxPerson, CarAddress carAddress, ArrayList<Lease> leases, double priceProKm, String insuranceCompName, String insuranceCompPhoneNumber, double currentKmstatus, Date nextMaintenance, double fuelIndicator) {
         this.id = id;
         this.name = name;
         this.make = make;
@@ -46,7 +45,6 @@ public class Car {
         this.insuranceCompPhoneNumber = insuranceCompPhoneNumber;
         this.currentKmstatus = currentKmstatus;
         this.nextMaintenance = nextMaintenance;
-        this.damages = damages;
         this.fuelIndicator = fuelIndicator;
     }
 
@@ -187,13 +185,6 @@ public class Car {
         return nextMaintenance;
     }
 
-    public void setDamages(ArrayList<String> damages) {
-        this.damages = damages;
-    }
-
-    public ArrayList<String> getDamages() {
-        return damages;
-    }
 
     public void setFuelIndicator(double fuelIndicator) {
         this.fuelIndicator = fuelIndicator;

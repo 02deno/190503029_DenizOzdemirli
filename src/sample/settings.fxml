@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -129,5 +130,30 @@
             </ImageView>
          </graphic>
       </Button>
+      <Label alignment="CENTER" layoutX="329.0" layoutY="220.0" prefHeight="56.0" prefWidth="211.0" text="Oh no! You're leaving..." textFill="WHITE">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="329.0" layoutY="249.0" prefHeight="56.0" prefWidth="211.0" text="Are you sure?" textFill="WHITE">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="cancelButton" layoutX="361.0" layoutY="305.0" mnemonicParsing="false" onAction="#cancelLogout" prefHeight="29.0" prefWidth="126.0" style="-fx-background-color: white;" text="No" textFill="#738580">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="logoutButton" layoutX="363.0" layoutY="344.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: #738580#738580 #738580#738580;" text="Yes,Log me out" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="338.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/logoutwhiteIcon.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
