@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class PaymentInformation {
 
-    private String id;
+    private int id;
     private Customer customer;
     private String cardType;
     private String cardNumber;
     private Date expiryDate;
     private int cardCode;
 
-    public PaymentInformation(String id, Customer customer, String cardType, String cardNumber, Date expiryDate, int cardCode) {
+    public PaymentInformation(int id, Customer customer, String cardType, String cardNumber, Date expiryDate, int cardCode) {
         this.id = id;
         this.customer = customer;
         this.cardType = cardType;
@@ -20,11 +20,19 @@ public class PaymentInformation {
         this.cardCode = cardCode;
     }
 
-    public void setId(String id) {
+    public PaymentInformation(int id, String cardType, String cardNumber, Date expiryDate, int cardCode) {
+        this.id = id;
+        this.cardType = cardType;
+        this.cardNumber = cardNumber;
+        this.expiryDate = expiryDate;
+        this.cardCode = cardCode;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -66,5 +74,10 @@ public class PaymentInformation {
 
     public int getCardCode() {
         return cardCode;
+    }
+
+    @Override
+    public String toString() {
+        return cardType  + "\n" + cardNumber + "\n" + expiryDate + ", " + cardCode;
     }
 }

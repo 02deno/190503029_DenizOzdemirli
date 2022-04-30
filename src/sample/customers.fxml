@@ -22,9 +22,9 @@
    <children>
       <VBox layoutX="-9.0" prefHeight="504.0" prefWidth="193.0" style="-fx-background-color: #189AB4#189AB4 #189AB4#189AB4;">
          <children>
-            <Pane prefHeight="162.0" prefWidth="195.0">
+            <Pane prefHeight="180.0" prefWidth="218.0">
                <children>
-                  <ImageView fitHeight="182.0" fitWidth="183.0" layoutX="12.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="193.0" fitWidth="187.0" layoutX="7.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/logo.jpg" />
                      </image>
@@ -145,9 +145,9 @@
                <children>
                   <TableView fx:id="tableView" layoutX="-44.0" layoutY="5.0" prefHeight="256.0" prefWidth="218.0" style="-fx-background-color: #746C70#746C70 #746C70#746C70;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="40.0" text="ID" />
-                      <TableColumn prefWidth="70.0" text="First Name" />
-                        <TableColumn prefWidth="106.0" text="Last Name" />
+                      <TableColumn fx:id="idCol" prefWidth="40.0" text="ID" />
+                      <TableColumn fx:id="firstNameCol" prefWidth="70.0" text="First Name" />
+                        <TableColumn fx:id="lastNameCol" prefWidth="106.0" text="Last Name" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -164,43 +164,43 @@
                   </Label>
                   <GridPane layoutX="8.0" layoutY="42.0" prefHeight="246.0" prefWidth="259.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="41.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.1973876953125" minWidth="10.0" prefWidth="100.15789794921875" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.84210205078125" minWidth="10.0" prefWidth="156.84210205078125" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="27.394744873046875" minHeight="10.0" prefHeight="16.578964233398438" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="45.42103576660156" minHeight="10.0" prefHeight="20.763168334960938" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="55.23683166503906" minHeight="10.0" prefHeight="16.34210205078125" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="89.65789794921875" minHeight="10.0" prefHeight="62.059234619140625" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="74.28945922851562" minHeight="10.0" prefHeight="24.776336669921875" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="49.828948974609375" minHeight="10.0" prefHeight="20.888153076171875" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="57.111846923828125" minHeight="10.0" prefHeight="25.552642822265625" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="63.34869384765625" minHeight="10.0" prefHeight="62.447357177734375" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="ID" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="112.0" text="First Name" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Last Name" GridPane.rowIndex="2" />
-                        <Label fx:id="idLabel" alignment="CENTER" prefHeight="15.0" prefWidth="127.0" text="Label" GridPane.columnIndex="1" />
-                        <Label fx:id="firstNameLabel" alignment="CENTER" prefHeight="15.0" prefWidth="126.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="lastNameLabel" alignment="CENTER" prefHeight="15.0" prefWidth="126.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="idLabel" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="firstNameLabel" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lastNameLabel" alignment="CENTER" prefHeight="15.0" prefWidth="158.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Address" GridPane.rowIndex="3" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="115.0" text="Email" GridPane.rowIndex="4" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="126.0" text="Phonenumber" GridPane.rowIndex="5" />
-                        <Label fx:id="addressLabel" alignment="CENTER" prefHeight="15.0" prefWidth="127.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="emailLabel" alignment="CENTER" prefHeight="15.0" prefWidth="127.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="phoneNumber1Label" alignment="CENTER" prefHeight="15.0" prefWidth="128.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="addressLabel" alignment="CENTER" prefHeight="53.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="emailLabel" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="phoneNumber1Label" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="125.0" text="Phonenumber2" GridPane.rowIndex="6" />
-                        <Label fx:id="phoneNumber2Label" alignment="CENTER" prefHeight="15.0" prefWidth="127.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="phoneNumber2Label" alignment="CENTER" prefHeight="15.0" prefWidth="161.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="128.0" text="Payment Info" GridPane.rowIndex="7" />
-                        <Label fx:id="paymentInfoLabel" alignment="CENTER" prefHeight="15.0" prefWidth="127.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="paymentInfoLabel" alignment="CENTER" prefHeight="64.0" prefWidth="161.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                      </children>
                   </GridPane>
-                  <ButtonBar layoutX="6.0" layoutY="294.0" prefHeight="40.0" prefWidth="200.0">
+                  <ButtonBar layoutX="7.0" layoutY="299.0" prefHeight="40.0" prefWidth="200.0">
                     <buttons>
-                      <Button fx:id="newButton" mnemonicParsing="false" text="New" />
-                        <Button fx:id="editButton" mnemonicParsing="false" text="Edit " />
-                        <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete" />
+                      <Button fx:id="newButton" mnemonicParsing="false" onAction="#addCustomer" text="New" />
+                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#editCustomer" text="Edit " />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteCustomer" text="Delete" />
                     </buttons>
                   </ButtonBar>
                </children>
@@ -213,5 +213,10 @@
          </font>
       </Label>
       <TextField fx:id="filterTextField" layoutX="322.0" layoutY="91.0" />
+      <Button fx:id="refreshButton" layoutX="682.0" layoutY="91.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="23.0" prefWidth="79.0" text="Refresh">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

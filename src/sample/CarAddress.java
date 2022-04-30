@@ -5,7 +5,7 @@ public class CarAddress extends Address {
     //private String nameParkingLot;
     private int numberParkingSpot;
 
-    public CarAddress(String id,String country,String district,String street,String zipCode,int numberParkingSpot) {
+    public CarAddress(int id,String country,String district,String street,String zipCode,int numberParkingSpot) {
        super(id,country,district,street,zipCode);
        this.numberParkingSpot = numberParkingSpot;
     }
@@ -20,14 +20,13 @@ public class CarAddress extends Address {
 
     @Override
     public String toString() {
-        return "CarAddress{" +
+        return "CarAddress :\n" +
                 "id='" + id + '\'' +
-                ", country='" + country + '\'' +
-                ", district='" + district + '\'' +
-                ", street='" + street + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", numberParkingSpot='" + numberParkingSpot +
-                '}';
+                "country='" + country + '\'' +
+                "district='" + district + '\'' +
+                "street='" + street + '\'' +
+                "zipCode='" + zipCode + '\'' +
+                "numberParkingSpot='" + numberParkingSpot;
     }
 
 }

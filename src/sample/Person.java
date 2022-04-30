@@ -2,30 +2,28 @@ package sample;
 
 public abstract class Person {
 
-    protected String id;
+    protected int id;
     protected String name ;
     protected String surname;
     protected Address address;
     protected String email;
     protected String phoneNumber1;
 
-    public Person(String id) throws InvalidID_Exception {
-        if(ID_control(id)) {
-            this.id = id;
-        }else {
-            throw new InvalidID_Exception();
-        }
+
+    public Person(int id)  {
+           this.id = id;
     }
 
 
-    public Person(String id,String name,String surname) throws InvalidID_Exception {
-        this(id);
+
+    public Person(int id,String name,String surname) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
     }
 
-    public Person(String id,String name,String surname,Address address,String email,String phoneNumber1) throws InvalidID_Exception {
-        this(id);
+    public Person(int id,String name,String surname,Address address,String email,String phoneNumber1) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.address = address;
@@ -33,9 +31,12 @@ public abstract class Person {
         this.phoneNumber1 = phoneNumber1;
     }
 
+    /*
     public static boolean ID_control(String id) {
         return id.matches("\\d+") && id.length() == 7;
     }
+
+     */
 
     @Override
     public String toString() {
@@ -46,17 +47,17 @@ public abstract class Person {
     public boolean equals(Object obj) {
         if(obj instanceof Person) {
             Person p = (Person) obj;
-            return id.equals(p.id);
+            return id == p.id;
         }
 
         return false;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

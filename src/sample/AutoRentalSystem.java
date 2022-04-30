@@ -13,6 +13,24 @@ public class AutoRentalSystem {
     protected ArrayList<Lease> leases;
     protected ArrayList<Bill> bills;
     protected ArrayList<Employee> employees;
+    protected ArrayList<Address> addresses;
+    protected ArrayList<PaymentInformation> paymentInformations;
+
+    public ArrayList<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(ArrayList<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    public ArrayList<PaymentInformation> getPaymentInformations() {
+        return paymentInformations;
+    }
+
+    public void setPaymentInformations(ArrayList<PaymentInformation> paymentInformations) {
+        this.paymentInformations = paymentInformations;
+    }
 
     public void setCustomers(ArrayList<Customer> customers) {
         this.customers = customers;
@@ -69,20 +87,20 @@ public class AutoRentalSystem {
         }
     }
 
-    public int searchCustomer(String id) {
+    public int searchCustomer(int id) {
         //returns the index
         Customer customer;
         for(int i = 0; i<customers.size(); i++)
         {
             customer= (Customer) customers.get(i);
-            if(customer.getId().equals(id) == true) {
+            if(customer.getId() ==id) {
                 return i;
             }
         }
         return -1;
     }
 
-    public boolean removeCustomer(String id) {
+    public boolean removeCustomer(int id) {
         int i = searchCustomer(id);
         if(i == -1) {
             return false;
@@ -251,20 +269,20 @@ public class AutoRentalSystem {
         }
     }
 
-    public int searchEmployee(String id) {
+    public int searchEmployee(int id) {
         //returns the index
         Employee employee;
         for(int i = 0; i<employees.size(); i++)
         {
             employee = (Employee) employees.get(i);
-            if(employee.getId().equals(id) == true) {
+            if(employee.getId() == id) {
                 return i;
             }
         }
         return -1;
     }
 
-    public boolean removeEmployee(String id) {
+    public boolean removeEmployee(int id) {
         int i = searchEmployee(id);
         if(i == -1) {
             return false;
@@ -283,14 +301,14 @@ public class AutoRentalSystem {
         return a;
     }
 
-    public void addCustomerToEmployee(Employee employee,String id) throws InvalidID_Exception {
+    public void addCustomerToEmployee(Employee employee,int id) throws InvalidID_Exception {
         Customer customer = new Customer(id);
         if(employee.getCustomers().contains(id) == false) {
             employee.getCustomers().add(customer);
         }
     }
 
-    public String printCustomersOfEmployee(String id){
+    public String printCustomersOfEmployee(int id){
         Employee employee = employees.get(searchEmployee(id));
         String a = "";
         for(int i = 0;i<employee.getCustomers().size();i++) {
@@ -306,7 +324,7 @@ public class AutoRentalSystem {
         }
     }
 
-    public String printLeasesOfEmployee(String id){
+    public String printLeasesOfEmployee(int id){
         Employee employee = employees.get(searchEmployee(id));
         String a = "";
         for(int i = 0;i<employee.getLeases().size();i++) {
@@ -315,7 +333,7 @@ public class AutoRentalSystem {
         return a;
     }
 
-    public void addCustomerToCar(Car car,String id) throws InvalidID_Exception {
+    public void addCustomerToCar(Car car,int id) throws InvalidID_Exception {
         Customer customer = new Customer(id);
         if(car.getCustomers().contains(id) == false) {
             car.getCustomers().add(customer);
@@ -359,6 +377,96 @@ public class AutoRentalSystem {
         String a = "";
         for(int i = 0;i<customer.getLeases().size();i++) {
             a = a + customer.getLeases().get(i).toString();
+        }
+        return a;
+    }
+
+    public boolean containsPaymentInfo(PaymentInformation paymentInformation) {
+        return paymentInformations.contains(paymentInformation);
+    }
+
+    public boolean addPaymentInfo(PaymentInformation paymentInformation) {
+        if(containsPaymentInfo(paymentInformation) == false) {
+            paymentInformations.add(paymentInformation);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public int searchPaymentInfo(int id) {
+        //returns the index
+        PaymentInformation paymentInformation;
+        for(int i = 0; i<paymentInformations.size(); i++)
+        {
+           paymentInformation = (PaymentInformation) paymentInformations.get(i);
+            if(paymentInformation.getId() == id) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean removePaymentInfo(int id) {
+        int i = searchPaymentInfo(id);
+        if(i == -1) {
+            return false;
+        }else {
+            PaymentInformation paymentInformation = (PaymentInformation) paymentInformations.get(i);
+            paymentInformations.remove(paymentInformation);
+            return true;
+        }
+    }
+
+    public String printPaymentInfoList() {
+        String a = "";
+        for(int i = 0; i<paymentInformations.size(); i++) {
+            a = a + paymentInformations.get(i).toString();
+        }
+        return a;
+    }
+
+    public boolean containsAddress(Address address) {
+        return addresses.contains(address);
+    }
+
+    public boolean addAddress(Address address) {
+        if(containsAddress(address) == false) {
+            addresses.add(address);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public int searchAddress(int id) {
+        //returns the index
+        Address address;
+        for(int i = 0; i<addresses.size(); i++)
+        {
+            address = (Address) addresses.get(i);
+            if(address.getId() == id) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean removeCar(int id) {
+        int i = searchAddress(id);
+        if(i == -1) {
+            return false;
+        }else {
+            Address address = (Address) addresses.get(i);
+            addresses.remove(address);
+            return true;
+        }
+    }
+
+    public String printAddressList() {
+        String a = "";
+        for(int i = 0; i<addresses.size(); i++) {
+            a = a + addresses.get(i).toString();
         }
         return a;
     }

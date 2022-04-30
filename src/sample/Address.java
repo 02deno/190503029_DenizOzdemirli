@@ -2,13 +2,13 @@ package sample;
 
 public abstract class Address {
 
-    protected String id;
+    protected int id;
     protected String country;
     protected String district;
     protected String street;
     protected String zipCode;
 
-    public Address(String id,String country,String district,String street,String zipCode) {
+    public Address(int id,String country,String district,String street,String zipCode) {
         this.id = id;
         this.country = country;
         this.district = district;
@@ -16,11 +16,11 @@ public abstract class Address {
         this.zipCode = zipCode;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

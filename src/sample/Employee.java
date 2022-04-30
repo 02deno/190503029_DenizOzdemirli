@@ -9,19 +9,19 @@ public class Employee extends Person {
     private ArrayList<Customer> customers = new ArrayList<>();
     private ArrayList<Lease> leases = new ArrayList<>();
 
-    public Employee(String id) throws InvalidID_Exception {
+    public Employee(int id)  {
         super(id);
     }
 
-    public Employee(String id,String name,String surname) throws InvalidID_Exception {
+    public Employee(int id,String name,String surname) {
         super(id,name,surname);
     }
 
-    public Employee(String id,String name,String surname,Address address,String email,String phoneNumber1) throws InvalidID_Exception {
+    public Employee(int id,String name,String surname,Address address,String email,String phoneNumber1)  {
         super(id, name, surname, address, email, phoneNumber1);
     }
 
-    public Employee(String id,String name,String surname,Address address,String email,String phoneNumber1,String username,String password,ArrayList<Customer> customers) throws InvalidID_Exception {
+    public Employee(int id,String name,String surname,Address address,String email,String phoneNumber1,String username,String password,ArrayList<Customer> customers)  {
         super(id, name, surname, address, email, phoneNumber1);
         this.username = username;
         this.password = password;

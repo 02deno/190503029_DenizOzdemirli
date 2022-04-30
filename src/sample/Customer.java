@@ -13,19 +13,33 @@ public class Customer extends Person {
     private Employee supervisingEmployee ;
     private boolean returned = false;
 
-    public Customer(String id) throws InvalidID_Exception {
+    public Customer(int id)  {
         super(id);
     }
 
-    public Customer(String id,String name,String surname) throws InvalidID_Exception {
+    public Customer(int id,String name,String surname)  {
         super(id,name,surname);
     }
 
-    public Customer(String id,String name,String surname,Address address,String email,String phoneNumber1) throws InvalidID_Exception {
+    public Customer(int id,String name,String surname,Address address,String email,String phoneNumber1) {
         super(id, name, surname, address, email, phoneNumber1);
     }
 
-    public Customer(String id,String name,String surname,Address address,String email,String phoneNumber1,String drivingLicenseNumber,String phoneNumber2,PaymentInformation paymentInformation,Car rentedCar,ArrayList<Lease> leases,Employee supervisingEmployee) throws InvalidID_Exception {
+    public Customer(int id,String name,String surname,Address address,String email,String phoneNumber1,String phoneNumber2,PaymentInformation paymentInformation) {
+        super(id, name, surname, address, email, phoneNumber1);
+        this.phoneNumber2 = phoneNumber2;
+        this.paymentInformation = paymentInformation;
+    }
+
+
+    public Customer(int id,String name,String surname,Address address,String email,String phoneNumber1,String drivingLicenseNumber,String phoneNumber2,PaymentInformation paymentInformation)  {
+        super(id, name, surname, address, email, phoneNumber1);
+        this.drivingLicenseNumber = drivingLicenseNumber;
+        this.phoneNumber2 = phoneNumber2;
+        this.paymentInformation = paymentInformation;
+    }
+
+    public Customer(int id,String name,String surname,Address address,String email,String phoneNumber1,String drivingLicenseNumber,String phoneNumber2,PaymentInformation paymentInformation,Car rentedCar,ArrayList<Lease> leases,Employee supervisingEmployee)  {
         super(id, name, surname, address, email, phoneNumber1);
         this.drivingLicenseNumber = drivingLicenseNumber;
         this.phoneNumber2 = phoneNumber2;
@@ -34,8 +48,6 @@ public class Customer extends Person {
         this.leases = leases;
         this.supervisingEmployee = supervisingEmployee;
     }
-
-
 
     public void setDrivingLicenseNumber(String drivingLicenseNumber) {
         this.drivingLicenseNumber = drivingLicenseNumber;

@@ -4,7 +4,7 @@ public class PersonAddress extends Address{
 
     private String homeNumber;
 
-    public PersonAddress(String id,String country,String district,String street,String zipCode,String homeNumber) {
+    public PersonAddress(int id,String country,String district,String street,String zipCode,String homeNumber) {
         super(id,country,district,street,zipCode);
         this.homeNumber = homeNumber;
     }
@@ -19,13 +19,6 @@ public class PersonAddress extends Address{
 
     @Override
     public String toString() {
-        return "CarAddress{" +
-                "id='" + id + '\'' +
-                ", country='" + country + '\'' +
-                ", district='" + district + '\'' +
-                ", street='" + street + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", homeNumber='" + homeNumber +
-                '}';
+        return  country +", "+ district +", "+ street +" \n"+ zipCode + ", " + homeNumber ;
     }
 }
