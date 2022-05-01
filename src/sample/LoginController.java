@@ -41,32 +41,20 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void validateLogin() {
+    public void validateLogin() throws IOException {
 
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDb = connectNow.getConnection();
 
-        String verifyLogin = "SELECT count(1) FROM employee WHERE username =  '" + usernameTextfield.getText() + "' AND pass = '" + passwordTextfield.getText() + "'" ;
+        boolean result = connectNow.validateLogin(usernameTextfield.getText(),passwordTextfield.getText());
 
-        try {
-            Statement statement = connectDb.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
-
-            while(queryResult.next()) {
-                if(queryResult.getInt(1)==1) {
-                    Main m = new Main();
-                    m.changeScene("homepage.fxml");
-
-
-                }else {
-                    loginMessageLabel.setText("Invalid login.Please try again.");
-                }
-            }
-
-        }catch(Exception e) {
-            e.printStackTrace();
-            e.getCause();
+        if(result == true) {
+            Main m = new Main();
+            m.changeScene("homepage.fxml");
+        }else {
+            loginMessageLabel.setText("Invalid login.Please try again.");
         }
+
     }
 
 

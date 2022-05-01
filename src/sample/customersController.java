@@ -131,211 +131,16 @@ public class customersController implements Initializable {
         idCol.setCellValueFactory(new PropertyValueFactory("id"));
         firstNameCol.setCellValueFactory(new PropertyValueFactory("name"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory("surname"));
-        //addressCol.setCellValueFactory(new PropertyValueFactory("address"));
-        //emailCol.setCellValueFactory(new PropertyValueFactory("address"));
-        //phoneNumber1Col.setCellValueFactory(new PropertyValueFactory("address"));
 
-        customerList = FXCollections.observableArrayList();
-        addressList = FXCollections.observableArrayList();
-        paymentInfoList = FXCollections.observableArrayList();
         DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDb = connectNow.getConnection();
+        tableView.setItems(connectNow.createAllCustomers());
 
 
-        String tableSQL3 = "SELECT * FROM payment_information";
-
-        try {
-            Statement statement2 = connectDb.createStatement();
-            ResultSet queryResult2 = statement2.executeQuery(tableSQL3);
-            while(queryResult2.next()) {
-                PaymentInformation paymentInformation = new PaymentInformation(
-                        queryResult2.getInt("payment_information_id"),
-                        queryResult2.getString("card_type"),
-                        queryResult2.getString("card_number"),
-                        queryResult2.getDate("expiry_date"),
-                        queryResult2.getInt("car_code")
-                        //card_code olması lazım databank da create table yaparken column adını car_code
-                        //diye yanlış girdin şimdilik bu isimle devam et sonra düzeltirsin.
-
-                );
-
-                paymentInfoList.add(paymentInformation);
-
-            }
-        }catch(Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-
-
-
-
-        String tableSQL2 = "SELECT * FROM person_address";
-
-        try {
-            Statement statement2 = connectDb.createStatement();
-            ResultSet queryResult2 = statement2.executeQuery(tableSQL2);
-            while(queryResult2.next()) {
-                PersonAddress address = new PersonAddress(
-                        queryResult2.getInt("address_id"),
-                        queryResult2.getString("country"),
-                        queryResult2.getString("district"),
-                        queryResult2.getString("home_number"),
-                        queryResult2.getString("street"),
-                        queryResult2.getString("zip_code")
-
-                );
-                addressList.add(address);
-
-            }
-        }catch(Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-
-
-        String tableSQL = "SELECT * FROM customer ";
-
-        try {
-            Statement statement = connectDb.createStatement();
-            ResultSet queryResult = statement.executeQuery(tableSQL);
-
-            while(queryResult.next()) {
-                Customer customer = new Customer(
-                        queryResult.getInt("customer_id"),
-                        queryResult.getString("first_name"),
-                        queryResult.getString("last_name")
-
-                );
-                customerList.add(customer);
-                tableView.setItems(customerList);
-
-                for(int i = 0; i<addressList.size(); i++)
-                {
-                    PersonAddress personAddress= (PersonAddress) addressList.get(i);
-                    if(personAddress.getId() == queryResult.getInt("address_id")) {
-                        customer.setAddress(personAddress);
-                    }
-                }
-
-                customer.setEmail(queryResult.getString("email"));
-                customer.setPhoneNumber1(queryResult.getString("phone_number_1"));
-                customer.setPhoneNumber2(queryResult.getString("phone_number_2"));
-
-                for(int i = 0; i<paymentInfoList.size(); i++)
-                {
-                    PaymentInformation paymentInformation= (PaymentInformation) paymentInfoList.get(i);
-                    if(paymentInformation.getId() == queryResult.getInt("payment_information_id")) {
-                        customer.setPaymentInformation(paymentInformation);
-                    }
-                }
-
-            }
-
-        }catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
     }
 
     public void refreshTable() {
-
         DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDb = connectNow.getConnection();
-
-        String tableSQL3 = "SELECT * FROM payment_information";
-
-        try {
-            Statement statement2 = connectDb.createStatement();
-            ResultSet queryResult2 = statement2.executeQuery(tableSQL3);
-            while(queryResult2.next()) {
-                PaymentInformation paymentInformation = new PaymentInformation(
-                        queryResult2.getInt("payment_information_id"),
-                        queryResult2.getString("card_type"),
-                        queryResult2.getString("card_number"),
-                        queryResult2.getDate("expiry_date"),
-                        queryResult2.getInt("car_code")
-                        //card_code olması lazım databank da create table yaparken column adını car_code
-                        //diye yanlış girdin şimdilik bu isimle devam et sonra düzeltirsin.
-
-                );
-
-                paymentInfoList.add(paymentInformation);
-
-            }
-        }catch(Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-
-        String tableSQL2 = "SELECT * FROM person_address";
-
-        try {
-            Statement statement2 = connectDb.createStatement();
-            ResultSet queryResult2 = statement2.executeQuery(tableSQL2);
-            while(queryResult2.next()) {
-                PersonAddress address = new PersonAddress(
-                        queryResult2.getInt("address_id"),
-                        queryResult2.getString("country"),
-                        queryResult2.getString("district"),
-                        queryResult2.getString("home_number"),
-                        queryResult2.getString("street"),
-                        queryResult2.getString("zip_code")
-
-                );
-                addressList.add(address);
-
-            }
-        }catch(Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-
-
-
-
-        String tableSQL = "SELECT * FROM customer ";
-        try {
-            customerList.clear();
-
-            Statement statement = connectDb.createStatement();
-            ResultSet queryResult = statement.executeQuery(tableSQL);
-
-            while(queryResult.next()) {
-                Customer customer = new Customer(
-
-                        queryResult.getInt("customer_id"),
-                        queryResult.getString("first_name"),
-                        queryResult.getString("last_name")
-
-                );
-                customerList.add(customer);
-                tableView.setItems(customerList);
-                for(int i = 0; i<addressList.size(); i++)
-                {
-                    PersonAddress personAddress= (PersonAddress) addressList.get(i);
-                    if(personAddress.getId() == queryResult.getInt("address_id")) {
-                        customer.setAddress(personAddress);
-                    }
-                }
-                customer.setEmail(queryResult.getString("email"));
-                customer.setPhoneNumber1(queryResult.getString("phone_number_1"));
-                customer.setPhoneNumber2(queryResult.getString("phone_number_2"));
-
-                for(int i = 0; i<paymentInfoList.size(); i++)
-                {
-                    PaymentInformation paymentInformation= (PaymentInformation) paymentInfoList.get(i);
-                    if(paymentInformation.getId() == queryResult.getInt("payment_information_id")) {
-                        customer.setPaymentInformation(paymentInformation);
-                    }
-                }
-
-            }
-
-        }catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
+        tableView.setItems(connectNow.createAllCustomers());
     }
 
     public void showPersonDetails(Customer customer) {
@@ -344,22 +149,11 @@ public class customersController implements Initializable {
             idLabel.setText(""+customer.getId());
             firstNameLabel.setText(customer.getName());
             lastNameLabel.setText(customer.getSurname());
-            if(customer.getAddress() == null ) {
-                addressLabel.setText("kimde hata ortaya çık");
-            }else {
-                addressLabel.setText(customer.getAddress().toString());
-            }
-
+            addressLabel.setText(customer.getAddress().toString());
             emailLabel.setText(customer.getEmail());
             phoneNumber1Label.setText(customer.getPhoneNumber1());
             phoneNumber2Label.setText(customer.getPhoneNumber2());
-
-            if(customer.getPaymentInformation() == null) {
-                paymentInfoLabel.setText("kimde hata ortaya çık");
-            }else {
-                paymentInfoLabel.setText(customer.getPaymentInformation().toString());
-            }
-
+            paymentInfoLabel.setText(customer.getPaymentInformation().toString());
 
         }else {
             idLabel.setText("");
@@ -393,31 +187,21 @@ public class customersController implements Initializable {
 
 
         DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDb = connectNow.getConnection();
+
 
         int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
         Customer selectedItem = tableView.getSelectionModel().getSelectedItem();
+
         if (selectedIndex >= 0) {
             tableView.getItems().remove(selectedIndex);
-            String tableSQL = "DELETE FROM customer WHERE customer_id = " + selectedItem.getId();
+            connectNow.deleteCustomer(selectedItem);
 
-            try {
-                Statement statement = connectDb.createStatement();
-                statement.execute(tableSQL);
-
-            }catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
-            }
-
-        } else {
+        }else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("No Selection");
             alert.setHeaderText("No Customer Selected");
             alert.setContentText("Please select a customer in the table.");
-
-
             alert.showAndWait();
         }
 
