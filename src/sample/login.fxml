@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -61,7 +63,14 @@
                   <Font size="33.0" />
                </font>
             </Button>
-            <PasswordField fx:id="passwordTextfield" layoutX="155.0" layoutY="240.0" prefHeight="23.0" prefWidth="176.0" promptText="password" />
+            <PasswordField fx:id="passwordTextfield" layoutX="155.0" layoutY="240.0" prefHeight="23.0" prefWidth="176.0" promptText="password">
+               <tooltip>
+                  <Tooltip fx:id="tooltip" contentDisplay="RIGHT" text="Empty Tooltip" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Tooltip>
+               </tooltip></PasswordField>
             <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="30.0" layoutY="283.0" prefHeight="39.0" prefWidth="310.0" textFill="#e80f0f">
                <font>
                   <Font size="19.0" />
@@ -72,6 +81,11 @@
                   <Font size="34.0" />
                </font>
             </Label>
+            <CheckBox fx:id="showPassword" layoutX="192.0" layoutY="284.0" mnemonicParsing="false" onAction="#showPassword" prefHeight="35.0" prefWidth="165.0" text="Show/Hide Password">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </CheckBox>
          </children>
       </AnchorPane>
    </center>
