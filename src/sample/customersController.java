@@ -11,7 +11,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,6 +65,8 @@ public class customersController implements Initializable {
     private Button refreshButton;
 
     private AutoRentalSystem ars;
+
+
 
 
 
@@ -170,11 +175,95 @@ public class customersController implements Initializable {
 
     }
 
+
+    public void switchtoEditDialog(ActionEvent event) throws IOException {
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+
+
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+        Customer selectedItem = tableView.getSelectionModel().getSelectedItem();
+
+
+
+        if (selectedIndex >= 0) {
+            CustomerEditController customerEditController = new CustomerEditController();
+            //System.out.println(selectedItem);
+            customerEditController.setCustomer(selectedItem);
+
+            try {
+                Parent parent = FXMLLoader.load(getClass().getResource("customerEditDialog.fxml"));
+                Scene scene  = new Scene(parent);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+
+            }catch (IOException ioException) {
+                ioException.printStackTrace();
+                ioException.getCause();
+            }
+
+
+
+        }else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Customer Selected");
+            alert.setContentText("Please select a customer in the table.");
+            alert.showAndWait();
+        }
+
+
+    }
+
+    public void switchtoAddDialog(ActionEvent event) throws IOException {
+
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource("customerAddDialog.fxml"));
+            Scene scene  = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+
+        }catch(IOException ioException) {
+            ioException.printStackTrace();
+            ioException.getCause();
+        }
+
+
+    }
+
     public void addCustomer() {
 
     }
 
+
     public void editCustomer() {
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+
+
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+        Customer selectedItem = tableView.getSelectionModel().getSelectedItem();
+
+
+
+        if (selectedIndex >= 0) {
+            CustomerEditController customerEditController = new CustomerEditController();
+            customerEditController.setCustomer(selectedItem);
+
+        }else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Customer Selected");
+            alert.setContentText("Please select a customer in the table.");
+            alert.showAndWait();
+        }
+
 
     }
 

@@ -21,25 +21,25 @@ public class Customer extends Person {
         super(id,name,surname);
     }
 
-    public Customer(int id,String name,String surname,Address address,String email,String phoneNumber1) {
+    public Customer(int id,String name,String surname,PersonAddress address,String email,String phoneNumber1) {
         super(id, name, surname, address, email, phoneNumber1);
     }
 
-    public Customer(int id,String name,String surname,Address address,String email,String phoneNumber1,String phoneNumber2,PaymentInformation paymentInformation) {
+    public Customer(int id,String name,String surname,PersonAddress address,String email,String phoneNumber1,String phoneNumber2,PaymentInformation paymentInformation) {
         super(id, name, surname, address, email, phoneNumber1);
         this.phoneNumber2 = phoneNumber2;
         this.paymentInformation = paymentInformation;
     }
 
 
-    public Customer(int id,String name,String surname,Address address,String email,String phoneNumber1,String drivingLicenseNumber,String phoneNumber2,PaymentInformation paymentInformation)  {
+    public Customer(int id,String name,String surname,PersonAddress address,String email,String phoneNumber1,String drivingLicenseNumber,String phoneNumber2,PaymentInformation paymentInformation)  {
         super(id, name, surname, address, email, phoneNumber1);
         this.drivingLicenseNumber = drivingLicenseNumber;
         this.phoneNumber2 = phoneNumber2;
         this.paymentInformation = paymentInformation;
     }
 
-    public Customer(int id,String name,String surname,Address address,String email,String phoneNumber1,String drivingLicenseNumber,String phoneNumber2,PaymentInformation paymentInformation,Car rentedCar,ArrayList<Lease> leases,Employee supervisingEmployee)  {
+    public Customer(int id,String name,String surname,PersonAddress address,String email,String phoneNumber1,String drivingLicenseNumber,String phoneNumber2,PaymentInformation paymentInformation,Car rentedCar,ArrayList<Lease> leases,Employee supervisingEmployee)  {
         super(id, name, surname, address, email, phoneNumber1);
         this.drivingLicenseNumber = drivingLicenseNumber;
         this.phoneNumber2 = phoneNumber2;

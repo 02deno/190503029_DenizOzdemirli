@@ -81,9 +81,10 @@ public class DatabaseConnection {
                         queryResult2.getInt("address_id"),
                         queryResult2.getString("country"),
                         queryResult2.getString("district"),
-                        queryResult2.getString("home_number"),
                         queryResult2.getString("street"),
-                        queryResult2.getString("zip_code")
+                        queryResult2.getString("zip_code"),
+                        queryResult2.getString("home_number")
+
 
                 );
                 addressList.add(address);
@@ -235,7 +236,7 @@ public class DatabaseConnection {
         //oluştur onun id sini gir
 
 
-
+        /*
 
         //UPDATE customer SET address_id = 4 WHERE last_name = 'Roy';
         Connection connectDb = this.getConnection();
@@ -247,6 +248,8 @@ public class DatabaseConnection {
 
         String SQL = "UPDATE customer " + "SET first_name = '" +first_name+ "',last_name = ' "+last_name+"'," + "',address_id = " + address_id + ",email = '" + email +"',phone_number_1 = '"+phoneNumber1  +"',phone_number_2 = '"+ phoneNumber2 + "',payment_information_id = " + payment_information_id + "WHERE customer_id =  " + customer.getAddress() ;
 
+
+         */
     }
 
 }

@@ -19,7 +19,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         //primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("Rent A Car");
-        primaryStage.setScene(new Scene(root, 696, 410));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

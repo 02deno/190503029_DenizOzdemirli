@@ -1,15 +1,20 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ResourceBundle;
 
-public class CustomerEditController {
+public class CustomerEditController implements Initializable {
 
     @FXML
     private TextField firstNameField;
@@ -23,6 +28,8 @@ public class CustomerEditController {
     private TextField streetField;
     @FXML
     private TextField zipCodeField;
+    @FXML
+    private TextField homeNumberField;
     @FXML
     private TextField emailField;
     @FXML
@@ -42,37 +49,19 @@ public class CustomerEditController {
     private Button okButton;
     @FXML
     private Button cancelButton;
-
+    private static Customer customer;
     private Stage dialogStage;
-    private Customer customer;
+
     private boolean okClicked = false;
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
-    public void setPerson(Customer customer) {
+    public void setCustomer(Customer customer) {
+        //System.out.println(customer.getName());
         this.customer = customer;
 
-        firstNameField.setText(customer.getName());
-        lastNameField.setText(customer.getSurname());
-        countryField.setText(customer.getAddress().getCountry());
-        districtField.setText(customer.getAddress().getDistrict());
-        streetField.setText(customer.getAddress().getStreet());
-        zipCodeField.setText(customer.getAddress().getZipCode());
-        emailField.setText(customer.getEmail());
-        phoneNumber1Field.setText(customer.getPhoneNumber1());
-        phoneNumber2Field.setText(customer.getPhoneNumber2());
-
-        //kart tipini seçtirebilirsin altına mastercard vize gibi
-        //seçenekler koyarak
-        //en son optimizasyon kısmında bak
-        cardTypeField.setText(customer.getPaymentInformation().getCardType());
-        cardNumberField.setText(customer.getPaymentInformation().getCardNumber());
-
-        //DatePicker ekle yerine
-        expiryDateField.setText(""+customer.getPaymentInformation().getExpiryDate());
-        expiryDateField.setPromptText("yyyy-mm-dd");
     }
 
 
@@ -122,28 +111,38 @@ public class CustomerEditController {
         if (streetField.getText() == null || streetField.getText().length() == 0) {
             errorMessage += "No valid street!\n";
         }
-        if (zipCodeField.getText() == null || zipCodeField.getText().length() == 0) {
+        if (zipCodeField.getText() == null || zipCodeField.getText().length() == 0 || zipCodeField.getText().length() != 5) {
+            //uzunluğu 5 mi
             errorMessage += "No valid zipcode!\n";
+        }
+        if (homeNumberField.getText() == null || homeNumberField.getText().length() == 0 ) {
+
+            errorMessage += "No valid homenumber!\n";
         }
         if (emailField.getText() == null || emailField.getText().length() == 0) {
             errorMessage += "No valid email!\n";
         }
-        if (phoneNumber1Field.getText() == null || phoneNumber1Field.getText().length() == 0) {
+        if (phoneNumber1Field.getText() == null || phoneNumber1Field.getText().length() == 0 || phoneNumber1Field.getText().length() != 11) {
+            //uzunluğu 11
+            //0532-123-45-67
             errorMessage += "No valid phonenumber1!\n";
         }
-        if (phoneNumber2Field.getText() == null || phoneNumber2Field.getText().length() == 0) {
+        if (phoneNumber2Field.getText() == null || phoneNumber2Field.getText().length() == 0  || phoneNumber1Field.getText().length() != 11) {
             errorMessage += "No valid phonenumber2!\n";
         }
         if (cardTypeField.getText() == null || cardTypeField.getText().length() == 0) {
             errorMessage += "No valid cardtype!\n";
         }
         if (cardNumberField.getText() == null || cardNumberField.getText().length() == 0) {
+            //uzunlğuğu 16
+            //sonra bak
             errorMessage += "No valid card number!\n";
         }
         if (expiryDateField.getText() == null || expiryDateField.getText().length() == 0) {
             errorMessage += "No valid expiry date!\n";
         }
-        if (cardCodeField.getText() == null || cardCodeField.getText().length() == 0) {
+        if (cardCodeField.getText() == null || cardCodeField.getText().length() == 0 || cardCodeField.getText().length() != 3) {
+            //uzunluğu 3
             errorMessage += "No valid card code!\n";
         }
 
@@ -165,9 +164,40 @@ public class CustomerEditController {
         }
     }
 
-    public void cancel() {
-        dialogStage.close();
+    public void cancel(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    public boolean isOkClicked() {
+        return okClicked;
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+        firstNameField.setText(customer.getName());
+        lastNameField.setText(customer.getSurname());
+        countryField.setText(customer.getAddress().getCountry());
+        districtField.setText(customer.getAddress().getDistrict());
+        streetField.setText(customer.getAddress().getStreet());
+        zipCodeField.setText(customer.getAddress().getZipCode());
+        homeNumberField.setText(customer.getAddress().getHomeNumber());
+        emailField.setText(customer.getEmail());
+        phoneNumber1Field.setText(customer.getPhoneNumber1());
+        phoneNumber2Field.setText(customer.getPhoneNumber2());
+
+        cardTypeField.setText(customer.getPaymentInformation().getCardType());
+        cardNumberField.setText(customer.getPaymentInformation().getCardNumber());
+        //DatePicker ekle yerine
+        expiryDateField.setText(""+customer.getPaymentInformation().getExpiryDate());
+        expiryDateField.setPromptText("yyyy-mm-dd");
+        cardCodeField.setText(""+customer.getPaymentInformation().getCardCode());
+
+
+
+
+    }
 }

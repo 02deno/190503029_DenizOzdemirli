@@ -17,11 +17,11 @@ public class Employee extends Person {
         super(id,name,surname);
     }
 
-    public Employee(int id,String name,String surname,Address address,String email,String phoneNumber1)  {
+    public Employee(int id,String name,String surname,PersonAddress address,String email,String phoneNumber1)  {
         super(id, name, surname, address, email, phoneNumber1);
     }
 
-    public Employee(int id,String name,String surname,Address address,String email,String phoneNumber1,String username,String password,ArrayList<Customer> customers)  {
+    public Employee(int id,String name,String surname,PersonAddress address,String email,String phoneNumber1,String username,String password,ArrayList<Customer> customers)  {
         super(id, name, surname, address, email, phoneNumber1);
         this.username = username;
         this.password = password;

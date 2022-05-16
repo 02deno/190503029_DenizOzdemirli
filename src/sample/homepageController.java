@@ -28,7 +28,7 @@ public class homepageController implements Initializable {
 
     private String currentOption;
 
-    private Main m = new Main();
+
 
     @FXML
     private Button homepageButton;
@@ -54,6 +54,8 @@ public class homepageController implements Initializable {
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //treeView.getStylesheets().add("myTree.css");
 
 
 

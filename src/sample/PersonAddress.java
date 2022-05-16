@@ -19,6 +19,6 @@ public class PersonAddress extends Address{
 
     @Override
     public String toString() {
-        return  country +", "+ district +", "+ street +" \n"+ zipCode + ", " + homeNumber ;
+        return  country +", "+ district +"\n"+ street + " " + homeNumber + ", "+zipCode   ;
     }
 }

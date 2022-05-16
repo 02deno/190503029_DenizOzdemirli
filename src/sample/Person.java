@@ -5,7 +5,7 @@ public abstract class Person {
     protected int id;
     protected String name ;
     protected String surname;
-    protected Address address;
+    protected PersonAddress address;
     protected String email;
     protected String phoneNumber1;
 
@@ -22,7 +22,7 @@ public abstract class Person {
         this.surname = surname;
     }
 
-    public Person(int id,String name,String surname,Address address,String email,String phoneNumber1) {
+    public Person(int id,String name,String surname,PersonAddress address,String email,String phoneNumber1) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -77,11 +77,11 @@ public abstract class Person {
         return surname;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(PersonAddress address) {
         this.address = address;
     }
 
-    public Address getAddress() {
+    public PersonAddress getAddress() {
         return address;
     }
 
