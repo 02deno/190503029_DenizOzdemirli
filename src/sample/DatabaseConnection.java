@@ -49,7 +49,7 @@ public class DatabaseConnection {
                         queryResult2.getInt("payment_information_id"),
                         queryResult2.getString("card_type"),
                         queryResult2.getString("card_number"),
-                        queryResult2.getDate("expiry_date"),
+                        queryResult2.getString("expiry_date"),
                         queryResult2.getInt("car_code")
                         //card_code olması lazım databank da create table yaparken column adını car_code
                         //diye yanlış girdin şimdilik bu isimle devam et sonra düzeltirsin.
@@ -111,6 +111,7 @@ public class DatabaseConnection {
             Statement statement = connectDb.createStatement();
             ResultSet queryResult = statement.executeQuery(tableSQL);
 
+
             while(queryResult.next()) {
                 Customer customer = new Customer(
                         queryResult.getInt("customer_id"),
@@ -144,6 +145,12 @@ public class DatabaseConnection {
             e.printStackTrace();
             e.getCause();
         }
+        /*
+        for(int i = 0;i<customerList.size();i++) {
+            System.out.println(customerList.get(i));
+        }
+
+         */
         return customerList;
     }
 
@@ -200,7 +207,7 @@ public class DatabaseConnection {
     // sadece manager employeelerle işlem
     //yapabilsin silsin eklesin editlesin
 
-    public void addCustomer(String first_name, String last_name, String country, String district, String street, String zipCode, String email, String phoneNumber1, String phoneNumber2, String cardType, String cardNumber, Date expiryDate, int cardCode) {
+    public void addCustomer(String first_name, String last_name, String country, String district, String street, String zipCode, String homeNumber,String email, String phoneNumber1, String phoneNumber2, String cardType, String cardNumber, Date expiryDate, int cardCode,String driving_license_number) {
 
         //eğer yoksa yeni address ve paymentInfo objesi oluştur
         //ilk kontrol et equals methodu override yap
@@ -216,7 +223,10 @@ public class DatabaseConnection {
         //equals methodu override yap öyle bak
         //hata versin aynı müşteri varsa alert dialog
 
-
+        //yukarıdakileri yapmadan önce ilk normal ekleme yap
+        //yeni müşteri oluşur
+        //yeni adres ve yeni kart bilgisi oluştur
+        //bakma aynısı var mı diye sonranın işi o
         //INSERT INTO customer VALUES(NULL,'Logan','Roy',NULL,'loganroy@gmail.com','05421234567','05421234568','MH12 20211234567',NULL);
 
         Connection connectDb = this.getConnection();
@@ -225,15 +235,26 @@ public class DatabaseConnection {
         int address_id = 0;
         int payment_information_id = 0;
 
-        String SQL = "INSERT INTO  customer VALUES(" + first_name + ","+ last_name + ","+ address_id + ","+ email + ","+ phoneNumber1 + ","+ phoneNumber2 + ","+ payment_information_id + ");" ;
+        //customer
+        //driving license number eksik dialoglarda
+        //ve tableview in yanındaki bilgi tablosunda onu güncelle
+        //customerda driver license ile alan construktur var mı ona bak
+        //yoksa ekle
+        String SQL2 = "INSERT INTO  customer VALUES(NULL" + first_name + ","+ last_name + ",NULL,"+ email + ","+ phoneNumber1 + ","+ phoneNumber2 + ","+ driving_license_number + ",NULL);" ;
+
+        //address
+        String SQL = "INSERT INTO  person_address VALUES(NULL" + country + ","+ district + ","+ street + ","+ zipCode + ","+ homeNumber +");" ;
+        //String SQL3 = "UPDATE customer SET address_id = "+ + "WHERE driving_license_number = ' " + driving_license_number+ "';";
+        //payment info
+        String SQL1 = "INSERT INTO  payment_information VALUES(NULL" + first_name + ","+ last_name + ","+ address_id + ","+ email + ","+ phoneNumber1 + ","+ phoneNumber2 + ","+ payment_information_id + ");" ;
+
 
     }
 
-    public void editCustomer(Customer customer,String first_name, String last_name, String country, String district, String street, String zipCode, String email, String phoneNumber1, String phoneNumber2, String cardType, String cardNumber, Date expiryDate, int cardCode) {
+    public void editCustomer(Customer customer) {
 
-        //varsa aynı id ile updatele
-        //yoksa yeni adres ya da paymentinfo
-        //oluştur onun id sini gir
+        //String first_name, String last_name, String country, String district, String street, String zipCode, String email, String phoneNumber1, String phoneNumber2, String cardType, String cardNumber, Date expiryDate, int cardCode
+
 
 
         /*
@@ -250,6 +271,21 @@ public class DatabaseConnection {
 
 
          */
+        Connection connectDb = this.getConnection();
+        String SQL = "UPDATE customer SET first_name = '" +customer.getName()+ "',last_name = '"+customer.getSurname()+"',email = '" + customer.getEmail() +"',phone_number_1 = '"+ customer.getPhoneNumber1()+"',phone_number_2 = '"+ customer.getPhoneNumber2() + "' WHERE customer_id =  " + customer.getId();
+        //address ve payment info için ayrı sql yaz
+        String SQL1 = "UPDATE person_address SET country = '" +customer.getAddress().getCountry()+ "',district = '"+customer.getAddress().getDistrict()+"',street = '" + customer.getAddress().getStreet() +"',zip_code = '"+ customer.getAddress().getZipCode()+"',home_number = '"+ customer.getAddress().getHomeNumber() + "' WHERE address_id =  " + customer.getAddress().getId();
+        String SQL2 = "UPDATE payment_information SET card_type = '" +customer.getPaymentInformation().getCardType()+ "',card_number = '"+customer.getPaymentInformation().getCardNumber()+"',expiry_date = '" + customer.getPaymentInformation().getExpiryDate() +"',car_code = "+ customer.getPaymentInformation().getCardCode()+ " WHERE payment_information_id =  " + customer.getPaymentInformation().getId();
+        try {
+            Statement statement = connectDb.createStatement();
+            statement.execute(SQL);
+            statement.execute(SQL1);
+            statement.execute(SQL2);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
 }

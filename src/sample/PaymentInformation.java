@@ -8,10 +8,10 @@ public class PaymentInformation {
     private Customer customer;
     private String cardType;
     private String cardNumber;
-    private Date expiryDate;
+    private String expiryDate;
     private int cardCode;
 
-    public PaymentInformation(int id, Customer customer, String cardType, String cardNumber, Date expiryDate, int cardCode) {
+    public PaymentInformation(int id, Customer customer, String cardType, String cardNumber, String expiryDate, int cardCode) {
         this.id = id;
         this.customer = customer;
         this.cardType = cardType;
@@ -20,7 +20,7 @@ public class PaymentInformation {
         this.cardCode = cardCode;
     }
 
-    public PaymentInformation(int id, String cardType, String cardNumber, Date expiryDate, int cardCode) {
+    public PaymentInformation(int id, String cardType, String cardNumber, String expiryDate, int cardCode) {
         this.id = id;
         this.cardType = cardType;
         this.cardNumber = cardNumber;
@@ -60,11 +60,11 @@ public class PaymentInformation {
         return cardNumber;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 

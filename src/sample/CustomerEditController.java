@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class CustomerEditController implements Initializable {
@@ -52,21 +53,20 @@ public class CustomerEditController implements Initializable {
     private static Customer customer;
     private Stage dialogStage;
 
-    private boolean okClicked = false;
+
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
     public void setCustomer(Customer customer) {
-        //System.out.println(customer.getName());
         this.customer = customer;
 
     }
 
 
-    public void ok() throws ParseException {
-
+    public void ok(ActionEvent event)  {
+        DatabaseConnection connectNow = new DatabaseConnection();
         if (isInputValid()) {
             customer.setName(firstNameField.getText());
             customer.setSurname(lastNameField.getText());
@@ -75,6 +75,7 @@ public class CustomerEditController implements Initializable {
             customer.getAddress().setDistrict(districtField.getText());
             customer.getAddress().setStreet(streetField.getText());
             customer.getAddress().setZipCode(zipCodeField.getText());
+            customer.getAddress().setHomeNumber(homeNumberField.getText());
 
             customer.setEmail(emailField.getText());
             customer.setPhoneNumber1(phoneNumber1Field.getText());
@@ -82,14 +83,17 @@ public class CustomerEditController implements Initializable {
 
             customer.getPaymentInformation().setCardType(cardTypeField.getText());
             customer.getPaymentInformation().setCardNumber(cardNumberField.getText());
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            customer.getPaymentInformation().setExpiryDate(formatter.parse(expiryDateField.getText()));
+            customer.getPaymentInformation().setExpiryDate(expiryDateField.getText());
             customer.getPaymentInformation().setCardCode(Integer.parseInt(cardCodeField.getText()));
 
+            connectNow.editCustomer(customer);
 
-            okClicked = true;
-            dialogStage.close();
+
+            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            stage.close();
+
         }
+
     }
 
     private boolean isInputValid() {
@@ -139,6 +143,7 @@ public class CustomerEditController implements Initializable {
             errorMessage += "No valid card number!\n";
         }
         if (expiryDateField.getText() == null || expiryDateField.getText().length() == 0) {
+            //format 2002-05-04 sonra ayarla
             errorMessage += "No valid expiry date!\n";
         }
         if (cardCodeField.getText() == null || cardCodeField.getText().length() == 0 || cardCodeField.getText().length() != 3) {
@@ -169,9 +174,7 @@ public class CustomerEditController implements Initializable {
         stage.close();
     }
 
-    public boolean isOkClicked() {
-        return okClicked;
-    }
+
 
 
     @Override

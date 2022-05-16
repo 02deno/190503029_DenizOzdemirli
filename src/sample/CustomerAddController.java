@@ -58,7 +58,7 @@ public class CustomerAddController {
         this.dialogStage = dialogStage;
     }
 
-    public void ok() throws ParseException {
+    public void ok()  {
         if (isInputValid())  {
             customer.setName(firstNameField.getText());
             customer.setSurname(lastNameField.getText());
@@ -67,6 +67,7 @@ public class CustomerAddController {
             customer.getAddress().setDistrict(districtField.getText());
             customer.getAddress().setStreet(streetField.getText());
             customer.getAddress().setZipCode(zipCodeField.getText());
+            customer.getAddress().setHomeNumber(homeNumberField.getText());
 
             customer.setEmail(emailField.getText());
             customer.setPhoneNumber1(phoneNumber1Field.getText());
@@ -74,14 +75,14 @@ public class CustomerAddController {
 
             customer.getPaymentInformation().setCardType(cardTypeField.getText());
             customer.getPaymentInformation().setCardNumber(cardNumberField.getText());
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            customer.getPaymentInformation().setExpiryDate(formatter.parse(expiryDateField.getText()));
+            customer.getPaymentInformation().setExpiryDate(expiryDateField.getText());
             customer.getPaymentInformation().setCardCode(Integer.parseInt(cardCodeField.getText()));
 
 
             okClicked = true;
             dialogStage.close();
         }
+
 
     }
 

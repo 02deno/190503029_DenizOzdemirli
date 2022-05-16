@@ -144,7 +144,9 @@ public class customersController implements Initializable {
     }
 
     public void refreshTable() {
+
         DatabaseConnection connectNow = new DatabaseConnection();
+        tableView.getItems().clear();
         tableView.setItems(connectNow.createAllCustomers());
     }
 
@@ -244,25 +246,7 @@ public class customersController implements Initializable {
     public void editCustomer() {
 
         DatabaseConnection connectNow = new DatabaseConnection();
-
-
-        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-        Customer selectedItem = tableView.getSelectionModel().getSelectedItem();
-
-
-
-        if (selectedIndex >= 0) {
-            CustomerEditController customerEditController = new CustomerEditController();
-            customerEditController.setCustomer(selectedItem);
-
-        }else {
-            // Nothing selected.
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No Customer Selected");
-            alert.setContentText("Please select a customer in the table.");
-            alert.showAndWait();
-        }
+        tableView.setItems(connectNow.createAllCustomers());
 
 
     }
