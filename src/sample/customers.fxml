@@ -190,8 +190,9 @@
                     <rowConstraints>
                       <RowConstraints maxHeight="27.394744873046875" minHeight="10.0" prefHeight="16.578964233398438" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="45.42103576660156" minHeight="10.0" prefHeight="20.763168334960938" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="55.23683166503906" minHeight="10.0" prefHeight="16.34210205078125" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="89.65789794921875" minHeight="10.0" prefHeight="62.059234619140625" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="55.23683166503906" minHeight="10.0" prefHeight="21.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="55.23683166503906" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="89.65789794921875" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="74.28945922851562" minHeight="10.0" prefHeight="24.776336669921875" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="49.828948974609375" minHeight="10.0" prefHeight="20.888153076171875" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="57.111846923828125" minHeight="10.0" prefHeight="25.552642822265625" vgrow="SOMETIMES" />
@@ -204,16 +205,18 @@
                         <Label fx:id="idLabel" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" />
                         <Label fx:id="firstNameLabel" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lastNameLabel" alignment="CENTER" prefHeight="15.0" prefWidth="158.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Address" GridPane.rowIndex="3" />
-                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="115.0" text="Email" GridPane.rowIndex="4" />
-                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="126.0" text="Phonenumber" GridPane.rowIndex="5" />
-                        <Label fx:id="addressLabel" alignment="CENTER" prefHeight="53.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="emailLabel" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="phoneNumber1Label" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="125.0" text="Phonenumber2" GridPane.rowIndex="6" />
-                        <Label fx:id="phoneNumber2Label" alignment="CENTER" prefHeight="15.0" prefWidth="161.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="128.0" text="Payment Info" GridPane.rowIndex="7" />
-                        <Label fx:id="paymentInfoLabel" alignment="CENTER" prefHeight="64.0" prefWidth="161.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Address" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="115.0" text="Email" GridPane.rowIndex="5" />
+                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="126.0" text="Phonenumber" GridPane.rowIndex="6" />
+                        <Label fx:id="addressLabel" alignment="CENTER" prefHeight="53.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="emailLabel" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="phoneNumber1Label" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="125.0" text="Phonenumber2" GridPane.rowIndex="7" />
+                        <Label fx:id="phoneNumber2Label" alignment="CENTER" prefHeight="15.0" prefWidth="161.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="128.0" text="Payment Info" GridPane.rowIndex="8" />
+                        <Label fx:id="paymentInfoLabel" alignment="CENTER" prefHeight="64.0" prefWidth="161.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="License Number" GridPane.rowIndex="3" />
+                        <Label fx:id="licenseNumberLabel" alignment="CENTER" prefHeight="15.0" prefWidth="158.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                   <ButtonBar layoutX="1.0" layoutY="299.0" prefHeight="40.0" prefWidth="200.0">
@@ -241,7 +244,7 @@
             <Font name="AppleGothic Regular" size="21.0" />
          </font>
       </Label>
-      <TextField fx:id="filterTextField" layoutX="339.0" layoutY="91.0" />
+      <TextField fx:id="filterTextField" layoutX="339.0" layoutY="91.0" onAction="#filterTable" />
       <Button fx:id="refreshButton" layoutX="682.0" layoutY="91.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="23.0" prefWidth="79.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="Refresh" textFill="#0a0a0a">
          <font>
             <Font name="AppleGothic Regular" size="16.0" />

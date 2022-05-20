@@ -25,6 +25,7 @@
          <rowConstraints>
             <RowConstraints maxHeight="45.42103576660156" minHeight="10.0" prefHeight="31.245872497558594" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="90.4529800415039" minHeight="0.0" prefHeight="33.475379943847656" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="90.4529800415039" minHeight="10.0" prefHeight="33.475379943847656" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="100.94013214111328" minHeight="0.0" prefHeight="32.34434509277344" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="100.94013214111328" minHeight="0.0" prefHeight="32.639434814453125" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="100.94013214111328" minHeight="8.823944091796875" prefHeight="31.868942260742188" vgrow="SOMETIMES" />
@@ -49,80 +50,86 @@
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Country " textFill="#0a0a0a" GridPane.rowIndex="2">
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Country " textFill="#0a0a0a" GridPane.rowIndex="3">
                <font>
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="115.0" text="Email" textFill="#0a0a0a" GridPane.rowIndex="7">
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="115.0" text="Email" textFill="#0a0a0a" GridPane.rowIndex="8">
                <font>
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="126.0" text="Phonenumber" textFill="#0a0a0a" GridPane.rowIndex="8">
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="126.0" text="Phonenumber" textFill="#0a0a0a" GridPane.rowIndex="9">
                <font>
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="125.0" text="Phonenumber2" textFill="#0a0a0a" GridPane.rowIndex="9">
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="125.0" text="Phonenumber2" textFill="#0a0a0a" GridPane.rowIndex="10">
                <font>
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="128.0" text="Expiry Date" textFill="#0a0a0a" GridPane.rowIndex="12">
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="128.0" text="Expiry Date" textFill="#0a0a0a" GridPane.rowIndex="13">
                <font>
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
             <TextField fx:id="firstNameField" prefHeight="0.0" prefWidth="198.0" GridPane.columnIndex="1" />
             <TextField fx:id="lastNameField" prefHeight="6.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="countryField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="phoneNumber1Field" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField fx:id="phoneNumber2Field" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="129.0" text="District" textFill="#0a0a0a" GridPane.rowIndex="3">
+            <TextField fx:id="countryField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="phoneNumber1Field" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="phoneNumber2Field" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="129.0" text="District" textFill="#0a0a0a" GridPane.rowIndex="4">
                <font>
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="131.0" text="Street" textFill="#0a0a0a" GridPane.rowIndex="4">
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="131.0" text="Street" textFill="#0a0a0a" GridPane.rowIndex="5">
                <font>
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="132.0" text="Zipcode" textFill="#0a0a0a" GridPane.rowIndex="5">
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="132.0" text="Zipcode" textFill="#0a0a0a" GridPane.rowIndex="6">
                <font>
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="districtField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="streetField" prefHeight="16.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="zipCodeField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="cardTypeField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <TextField fx:id="cardNumberField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <TextField fx:id="expiryDateField" prefHeight="16.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-            <TextField fx:id="cardCodeField" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Card Type" textFill="#0a0a0a" GridPane.rowIndex="10">
+            <TextField fx:id="districtField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="streetField" prefHeight="16.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="zipCodeField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="cardTypeField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <TextField fx:id="cardNumberField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <TextField fx:id="expiryDateField" prefHeight="16.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+            <TextField fx:id="cardCodeField" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Card Type" textFill="#0a0a0a" GridPane.rowIndex="11">
                <font>
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="116.0" text="Card Number" textFill="#0a0a0a" GridPane.rowIndex="11">
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="116.0" text="Card Number" textFill="#0a0a0a" GridPane.rowIndex="12">
                <font>
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="120.0" text="Card Code" textFill="#0a0a0a" GridPane.rowIndex="13">
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="120.0" text="Card Code" textFill="#0a0a0a" GridPane.rowIndex="14">
                <font>
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="15.0" prefWidth="132.0" text="Homenumber" textFill="#0a0a0a" GridPane.rowIndex="6">
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="132.0" text="Homenumber" textFill="#0a0a0a" GridPane.rowIndex="7">
                <font>
                   <Font name="AppleGothic Regular" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="homeNumberField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="homeNumberField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="License Number" textFill="#0a0a0a" GridPane.rowIndex="2">
+               <font>
+                  <Font name="AppleGothic Regular" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="licenseNumberField" prefHeight="0.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <ButtonBar layoutX="118.0" layoutY="482.0" prefHeight="40.0" prefWidth="200.0">

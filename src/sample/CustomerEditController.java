@@ -22,6 +22,8 @@ public class CustomerEditController implements Initializable {
     @FXML
     private TextField lastNameField;
     @FXML
+    private TextField licenseNumberField;
+    @FXML
     private TextField countryField;
     @FXML
     private TextField districtField;
@@ -46,10 +48,7 @@ public class CustomerEditController implements Initializable {
     @FXML
     private TextField cardCodeField;
 
-    @FXML
-    private Button okButton;
-    @FXML
-    private Button cancelButton;
+
     private static Customer customer;
     private Stage dialogStage;
 
@@ -70,6 +69,7 @@ public class CustomerEditController implements Initializable {
         if (isInputValid()) {
             customer.setName(firstNameField.getText());
             customer.setSurname(lastNameField.getText());
+            customer.setDrivingLicenseNumber(licenseNumberField.getText());
 
             customer.getAddress().setCountry(countryField.getText());
             customer.getAddress().setDistrict(districtField.getText());
@@ -104,6 +104,9 @@ public class CustomerEditController implements Initializable {
             errorMessage += "No valid first name!\n";
         }
         if (lastNameField.getText() == null || lastNameField.getText().length() == 0) {
+            errorMessage += "No valid last name!\n";
+        }
+        if (licenseNumberField.getText() == null || licenseNumberField.getText().length() == 0) {
             errorMessage += "No valid last name!\n";
         }
         if (countryField.getText() == null || countryField.getText().length() == 0) {
@@ -183,6 +186,7 @@ public class CustomerEditController implements Initializable {
 
         firstNameField.setText(customer.getName());
         lastNameField.setText(customer.getSurname());
+        licenseNumberField.setText(customer.getDrivingLicenseNumber());
         countryField.setText(customer.getAddress().getCountry());
         districtField.setText(customer.getAddress().getDistrict());
         streetField.setText(customer.getAddress().getStreet());

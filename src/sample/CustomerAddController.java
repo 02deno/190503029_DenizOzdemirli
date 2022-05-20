@@ -2,19 +2,24 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.net.URL;
+import java.util.Date;
+import java.util.ResourceBundle;
 
-public class CustomerAddController {
+
+public class CustomerAddController implements Initializable {
 
     @FXML
     private TextField firstNameField;
     @FXML
     private TextField lastNameField;
+    @FXML
+    private TextField licenseNumberField;
     @FXML
     private TextField countryField;
     @FXML
@@ -41,46 +46,46 @@ public class CustomerAddController {
     private TextField cardCodeField;
 
 
-    @FXML
-    private Button okButton;
-    @FXML
-    private Button cancelButton;
 
-    @FXML
-    private DialogPane dialogPane;
 
 
     private Stage dialogStage;
-    private Customer customer;
-    private boolean okClicked = false;
+    private static Customer customer;
+
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
-    public void ok()  {
+    public void ok(ActionEvent event)  {
+        DatabaseConnection connectNow = new DatabaseConnection();
         if (isInputValid())  {
-            customer.setName(firstNameField.getText());
-            customer.setSurname(lastNameField.getText());
 
-            customer.getAddress().setCountry(countryField.getText());
-            customer.getAddress().setDistrict(districtField.getText());
-            customer.getAddress().setStreet(streetField.getText());
-            customer.getAddress().setZipCode(zipCodeField.getText());
-            customer.getAddress().setHomeNumber(homeNumberField.getText());
+            String first_name = firstNameField.getText();
+            String last_name = lastNameField.getText();
+            String driving_license_number = licenseNumberField.getText();;
 
-            customer.setEmail(emailField.getText());
-            customer.setPhoneNumber1(phoneNumber1Field.getText());
-            customer.setPhoneNumber2(phoneNumber2Field.getText());
+            String country = countryField.getText();
+            String district = districtField.getText();
+            String street = streetField.getText();
+            String zipCode = zipCodeField.getText();
+            String homeNumber = homeNumberField.getText();
 
-            customer.getPaymentInformation().setCardType(cardTypeField.getText());
-            customer.getPaymentInformation().setCardNumber(cardNumberField.getText());
-            customer.getPaymentInformation().setExpiryDate(expiryDateField.getText());
-            customer.getPaymentInformation().setCardCode(Integer.parseInt(cardCodeField.getText()));
+            String email = emailField.getText();
+            String phoneNumber1 = phoneNumber1Field.getText();
+            String phoneNumber2 = phoneNumber2Field.getText();
+
+            String cardType = cardTypeField.getText();
+            String cardNumber = cardNumberField.getText();
+            String expiryDate = expiryDateField.getText();
+            int cardCode = Integer.parseInt(cardCodeField.getText());
 
 
-            okClicked = true;
-            dialogStage.close();
+
+
+            connectNow.addCustomer(first_name,last_name,driving_license_number,country,district,street,zipCode,homeNumber,email,phoneNumber1,phoneNumber2,cardType, cardNumber,expiryDate, cardCode);
+            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            stage.close();
         }
 
 
@@ -94,6 +99,9 @@ public class CustomerAddController {
             errorMessage += "No valid first name!\n";
         }
         if (lastNameField.getText() == null || lastNameField.getText().length() == 0) {
+            errorMessage += "No valid last name!\n";
+        }
+        if (licenseNumberField.getText() == null || licenseNumberField.getText().length() == 0) {
             errorMessage += "No valid last name!\n";
         }
         if (countryField.getText() == null || countryField.getText().length() == 0) {
@@ -164,5 +172,10 @@ public class CustomerAddController {
     public void cancel(ActionEvent event) {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        expiryDateField.setPromptText("yyyy-mm-dd");
     }
 }

@@ -1,5 +1,6 @@
 package sample;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,16 +12,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class customersController implements Initializable {
@@ -39,15 +36,13 @@ public class customersController implements Initializable {
     @FXML
     private TableColumn<Customer,String>  lastNameCol;
 
-    private ObservableList<Customer> customerList;
-    private ObservableList<PersonAddress> addressList;
-    private ObservableList<PaymentInformation> paymentInfoList;
-
 
     @FXML
     private Label idLabel;
     @FXML
     private Label firstNameLabel;
+    @FXML
+    private Label licenseNumberLabel;
     @FXML
     private Label lastNameLabel;
     @FXML
@@ -61,14 +56,9 @@ public class customersController implements Initializable {
     @FXML
     private Label paymentInfoLabel;
 
+
     @FXML
-    private Button refreshButton;
-
-    private AutoRentalSystem ars;
-
-
-
-
+    private TextField filterTextField;
 
     public void switchToHomepages(ActionEvent event) throws IOException {
 
@@ -156,16 +146,18 @@ public class customersController implements Initializable {
             idLabel.setText(""+customer.getId());
             firstNameLabel.setText(customer.getName());
             lastNameLabel.setText(customer.getSurname());
-            addressLabel.setText(customer.getAddress().toString());
+            licenseNumberLabel.setText(customer.getDrivingLicenseNumber());
             emailLabel.setText(customer.getEmail());
             phoneNumber1Label.setText(customer.getPhoneNumber1());
             phoneNumber2Label.setText(customer.getPhoneNumber2());
+            addressLabel.setText(customer.getAddress().toString());
             paymentInfoLabel.setText(customer.getPaymentInformation().toString());
 
         }else {
             idLabel.setText("");
             firstNameLabel.setText("");
             lastNameLabel.setText("");
+            licenseNumberLabel.setText("");
             addressLabel.setText("");
             emailLabel.setText("");
             phoneNumber1Label.setText("");
@@ -238,18 +230,7 @@ public class customersController implements Initializable {
 
     }
 
-    public void addCustomer() {
 
-    }
-
-
-    public void editCustomer() {
-
-        DatabaseConnection connectNow = new DatabaseConnection();
-        tableView.setItems(connectNow.createAllCustomers());
-
-
-    }
 
     public void deleteCustomer() {
 
@@ -276,6 +257,38 @@ public class customersController implements Initializable {
             alert.setHeaderText("No Customer Selected");
             alert.setContentText("Please select a customer in the table.");
             alert.showAndWait();
+        }
+
+    }
+
+    public void filterTable() {
+        String text = filterTextField.getText();
+        // If filter text is empty, display all persons.
+        DatabaseConnection connectNow = new DatabaseConnection();
+        ObservableList<Customer> customerList = connectNow.createAllCustomers();
+        ObservableList<Customer> filteredCustomerList ;
+        filteredCustomerList= FXCollections.observableArrayList();
+        if(text == null) {
+            //do nothing
+        }else {
+            // Compare first name and last name of every person with filter text.
+            String lowerCaseFilter = text.toLowerCase();
+            for(int i = 0;i<customerList.size();i++) {
+                Customer customer = customerList.get(i);
+                if (customer.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    // Filter matches first name.
+                    filteredCustomerList.add(customer);
+                } else if (customer.getSurname().toLowerCase().contains(lowerCaseFilter)) {
+                    // Filter matches last name.
+                    filteredCustomerList.add(customer);
+                }
+            }
+
+            tableView.setItems(filteredCustomerList);
+        }
+
+        for(int i = 0;i<filteredCustomerList.size();i++) {
+            System.out.println(filteredCustomerList.get(i));
         }
 
     }
