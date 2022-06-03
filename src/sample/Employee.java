@@ -66,7 +66,7 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return "Employee\n" + "Id: " + id + "\nName: " + name + "\nSurname: " + surname + "\n";
+        return   "Id: " + id + "\nName: " + name + "\nSurname: " + surname + "\n";
     }
 
     public void addCustomer(Customer customer) {

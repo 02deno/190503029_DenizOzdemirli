@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -160,6 +161,26 @@
                   <Insets left="10.0" />
                </VBox.margin>
             </Rectangle>
+            <Line endX="20.0" startX="204.95909118652344" stroke="#a1efff8f">
+               <VBox.margin>
+                  <Insets left="7.0" />
+               </VBox.margin>
+            </Line>
+            <Button fx:id="logoutButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToLogout" prefHeight="36.0" prefWidth="192.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="Logout" textFill="#0a0a0a">
+               <padding>
+                  <Insets bottom="3.0" left="10.0" />
+               </padding>
+               <font>
+                  <Font name="AppleGothic Regular" size="24.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/660350.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </VBox>
       <Button fx:id="settingsButton1" alignment="BOTTOM_LEFT" layoutX="212.0" layoutY="23.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #EDE7DC#EDE7DC #EDE7DC#EDE7DC #EDE7DC#EDE7DC #EDE7DC#EDE7DC;" text="Settings" textFill="#0a0a0a">
@@ -177,30 +198,33 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fx:id="imageView" fitHeight="171.0" fitWidth="163.0" layoutX="419.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@4400314.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="cancelButton" layoutX="432.0" layoutY="374.0" mnemonicParsing="false" onAction="#cancelLogout" prefHeight="31.0" prefWidth="119.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="No" textFill="#0a0a0a">
+      <PasswordField fx:id="currentPassword" layoutX="559.0" layoutY="183.0" />
+      <PasswordField fx:id="newPassword" layoutX="559.0" layoutY="241.0" />
+      <PasswordField fx:id="confirmPassword" layoutX="559.0" layoutY="299.0" />
+      <Label layoutX="348.0" layoutY="103.0" text="Change Password" textFill="#0a0a0a">
          <font>
-            <Font name="AppleGothic Regular" size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="logoutButton" layoutX="432.0" layoutY="414.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: #ffa84a#ffa84a;" text="Yes,Log me out" textFill="#0a0a0a">
-         <font>
-            <Font name="AppleGothic Regular" size="14.0" />
-         </font>
-      </Button>
-      <Label layoutX="392.0" layoutY="290.0" prefHeight="38.0" prefWidth="206.0" text="Oh no! You're leaving..." textFill="#0a0a0a">
-         <font>
-            <Font name="AppleGothic Regular" size="18.0" />
+            <Font name="AppleGothic Regular" size="34.0" />
          </font>
       </Label>
-      <Label layoutX="430.0" layoutY="326.0" prefHeight="38.0" prefWidth="132.0" text="Are you sure ?" textFill="#0a0a0a">
+      <Label layoutX="239.0" layoutY="175.0" text="Current Password:" textFill="#0a0a0a">
          <font>
-            <Font name="AppleGothic Regular" size="18.0" />
+            <Font name="AppleGothic Regular" size="26.0" />
          </font>
       </Label>
+      <Label layoutX="239.0" layoutY="233.0" text="New Password:" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="239.0" layoutY="291.0" text="Confirm New Password:" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="26.0" />
+         </font>
+      </Label>
+      <Button fx:id="cancelButton" layoutX="433.0" layoutY="381.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="31.0" prefWidth="119.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="OK" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="27.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

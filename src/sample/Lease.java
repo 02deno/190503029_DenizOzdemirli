@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class Lease {
 
-    private String id;
+    private int id;
     private Customer customer;
     private Car rentedCar;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private double price;
     private int duration;
     private double startKm;
@@ -19,11 +19,25 @@ public class Lease {
     private Employee supervisingEmployee;
     private Bill bill;
 
-    public Lease(String id) {
+    public Lease(int id) {
         this.id = id;
     }
 
-    public Lease(String id, Customer customer, Car rentedCar, Date startDate, Date endDate, double price, int duration, double startKm, double endKm, double priceProKm, double insuranceCosts, boolean closed, Employee supervisingEmployee, Bill bill) {
+    public Lease(int id,Customer customer,Employee employee) {
+        this.id = id;
+        this.customer = customer;
+        this.supervisingEmployee = employee;
+
+    }
+
+    public Lease(int id,Customer customer,Car car) {
+        this.id = id;
+        this.customer = customer;
+        this.rentedCar = car;
+
+    }
+
+    public Lease(int id, Customer customer, Car rentedCar, String startDate, String endDate, double price, int duration, double startKm, double endKm, double priceProKm, double insuranceCosts, boolean closed, Employee supervisingEmployee, Bill bill) {
         this.id = id;
         this.customer = customer;
         this.rentedCar = rentedCar;
@@ -40,11 +54,11 @@ public class Lease {
         this.bill = bill;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -64,19 +78,19 @@ public class Lease {
         return rentedCar;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
@@ -158,20 +172,19 @@ public class Lease {
 
     @Override
     public String toString() {
-        return "Lease{" +
-                "id='" + id + '\'' +
-                ", customer=" + customer +
-                ", rentedCar=" + rentedCar +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", price=" + price +
-                ", duration=" + duration +
-                ", startKm=" + startKm +
+        return "Lease\n" +
+                "id=" + id  +
+                "\ncustomer:\n" + customer +
+                "\nrentedCar=" + rentedCar +
+                "\nstartDate=" + startDate +
+                ",endDate=" + endDate +
+                "\nprice=" + price +
+                "\nduration=" + duration +
+                "\nstartKm=" + startKm +
                 ", endKm=" + endKm +
-                ", priceProKm=" + priceProKm +
+                "\npriceProKm=" + priceProKm +
                 ", insuranceCosts=" + insuranceCosts +
-                ", closed=" + closed +
-                ", supervisingEmployee=" + supervisingEmployee +
-                '}';
+                "\nclosed=" + closed +
+                "\nsupervisingEmployee:\n" + supervisingEmployee ;
     }
 }

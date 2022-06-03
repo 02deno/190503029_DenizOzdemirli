@@ -32,15 +32,27 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField passwordTextfield;
 
+    public static String username;
+    public static String password;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //File brandingFile = new File();
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public void login(ActionEvent event) throws IOException {
 
         if(usernameTextfield.getText().isBlank() == false && passwordTextfield.getText().isBlank() == false ) {
+
             validateLogin();
 
         }else{
@@ -58,6 +70,8 @@ public class LoginController implements Initializable {
         boolean result = connectNow.validateLogin(usernameTextfield.getText(),passwordTextfield.getText());
 
         if(result == true) {
+            username = usernameTextfield.getText();
+            password = passwordTextfield.getText();
             Main m = new Main();
             m.changeScene("homepage.fxml");
         }else {

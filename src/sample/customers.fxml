@@ -22,7 +22,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="782.0" style="-fx-background-color: #E2DED0#E2DED0 #E2DED0#E2DED0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.customersController">
    <children>
-      <VBox layoutX="-9.0" prefHeight="505.0" prefWidth="206.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA;">
+      <VBox layoutX="-4.0" prefHeight="505.0" prefWidth="206.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA;">
          <children>
             <Pane prefHeight="145.0" prefWidth="183.0">
                <children>
@@ -93,7 +93,7 @@
             </Button>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffa84a" height="39.0" stroke="#ede7dc" strokeType="INSIDE" width="13.0">
                <VBox.margin>
-                  <Insets left="10.0" />
+                  <Insets bottom="-0.0" left="10.0" />
                </VBox.margin>
             </Rectangle>
             <Line endX="20.0" startX="204.95909118652344" stroke="#a1efff8f">
@@ -155,6 +155,29 @@
                      </image>
                   </ImageView>
                </graphic>
+            </Button>
+            <Line endX="20.0" startX="204.95909118652344" stroke="#a1efff8f">
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Line>
+            <Button fx:id="logoutButton" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToLogout" prefHeight="36.0" prefWidth="192.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="Logout" textFill="#0a0a0a">
+               <padding>
+                  <Insets bottom="3.0" left="10.0" />
+               </padding>
+               <font>
+                  <Font name="AppleGothic Regular" size="24.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/660350.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </Button>
          </children>
       </VBox>

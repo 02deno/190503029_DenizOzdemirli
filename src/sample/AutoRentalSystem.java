@@ -8,13 +8,13 @@ public class AutoRentalSystem {
     //delete
     //modify
 
-    protected ArrayList<Customer> customers;
-    protected ArrayList<Car> cars;
-    protected ArrayList<Lease> leases;
-    protected ArrayList<Bill> bills;
-    protected ArrayList<Employee> employees;
-    protected ArrayList<Address> addresses;
-    protected ArrayList<PaymentInformation> paymentInformations;
+    protected static ArrayList<Customer> customers;
+    protected static ArrayList<Car> cars;
+    protected static ArrayList<Lease> leases;
+    protected static ArrayList<Bill> bills;
+    protected static ArrayList<Employee> employees;
+    protected static ArrayList<Address> addresses;
+    protected static ArrayList<PaymentInformation> paymentInformations;
 
     public ArrayList<Address> getAddresses() {
         return addresses;
@@ -132,20 +132,20 @@ public class AutoRentalSystem {
         }
     }
 
-    public int searchCar(String id) {
+    public int searchCar(int id) {
         //returns the index
         Car car;
         for(int i = 0; i<cars.size(); i++)
         {
             car = (Car) cars.get(i);
-            if(car.getId().equals(id) == true) {
+            if(car.getId() == id) {
                 return i;
             }
         }
         return -1;
     }
 
-    public boolean removeCar(String id) {
+    public boolean removeCar(int id) {
         int i = searchCar(id);
         if(i == -1) {
             return false;
@@ -178,20 +178,20 @@ public class AutoRentalSystem {
         }
     }
 
-    public int searchLease(String id) {
+    public int searchLease(int id) {
         //returns the index
         Lease lease;
         for(int i = 0; i<leases.size(); i++)
         {
             lease = (Lease) leases.get(i);
-            if(lease.getId().equals(id) == true) {
+            if(lease.getId() == id) {
                 return i;
             }
         }
         return -1;
     }
 
-    public boolean removeLease(String id) {
+    public boolean removeLease(int id) {
         int i = searchLease(id);
         if(i == -1) {
             return false;
@@ -317,7 +317,7 @@ public class AutoRentalSystem {
         return a;
     }
 
-    public void addLeaseToEmployee(Employee employee,String id)  {
+    public void addLeaseToEmployee(Employee employee,int id)  {
         Lease lease = new Lease(id);
         if(employee.getLeases().contains(id) == false) {
             employee.getLeases().add(lease);
@@ -340,7 +340,7 @@ public class AutoRentalSystem {
         }
     }
 
-    public String printCustomersOfCar(String id){
+    public String printCustomersOfCar(int id){
         Car car = cars.get(searchCar(id));
         String a = "";
         for(int i = 0;i<car.getCustomers().size();i++) {
@@ -349,14 +349,14 @@ public class AutoRentalSystem {
         return a;
     }
 
-    public void addLeaseToCar(Car car,String id)  {
+    public void addLeaseToCar(Car car,int id)  {
         Lease lease = new Lease(id);
         if(car.getLeases().contains(id) == false) {
             car.getLeases().add(lease);
         }
     }
 
-    public String printLeasesOfCar(String id){
+    public String printLeasesOfCar(int id){
         Car car = cars.get(searchCar(id));
         String a = "";
         for(int i = 0;i<car.getLeases().size();i++) {
@@ -365,14 +365,14 @@ public class AutoRentalSystem {
         return a;
     }
 
-    public void addLeaseToCustomer(Customer customer,String id)  {
+    public void addLeaseToCustomer(Customer customer,int id)  {
         Lease lease = new Lease(id);
         if(customer.getLeases().contains(id) == false) {
             customer.getLeases().add(lease);
         }
     }
 
-    public String printLeasesOfCustomer(String id){
+    public String printLeasesOfCustomer(int id){
         Customer customer = customers.get(searchCar(id));
         String a = "";
         for(int i = 0;i<customer.getLeases().size();i++) {
@@ -452,7 +452,7 @@ public class AutoRentalSystem {
         return -1;
     }
 
-    public boolean removeCar(int id) {
+    public boolean removeAddress(int id) {
         int i = searchAddress(id);
         if(i == -1) {
             return false;

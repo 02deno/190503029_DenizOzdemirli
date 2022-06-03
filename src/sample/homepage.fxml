@@ -150,6 +150,26 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Line startX="183.5" stroke="#a1efff90">
+               <VBox.margin>
+                  <Insets left="7.0" />
+               </VBox.margin>
+            </Line>
+            <Button fx:id="settingsButton1" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToLogout" prefHeight="36.0" prefWidth="192.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="Logout">
+               <padding>
+                  <Insets bottom="3.0" left="10.0" />
+               </padding>
+               <font>
+                  <Font name="AppleGothic Regular" size="24.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="25.0" onDragDetected="#switchToLogout" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/660350.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </VBox>
       <Label layoutX="214.0" layoutY="71.0" prefHeight="41.0" prefWidth="293.0" style="-fx-background-color: #EDE7DC#EDE7DC;" text="Options-Overview">

@@ -7,12 +7,12 @@ import java.util.Date;
 
 public class Car {
 
-    private String id;
+    private int id;
     private String name; //Nissan Altima
     private String make; //brand of the vehicle : Nissan
     private String model; //specific vehicle model : Altima
     private String licenseNumber;
-    private int year; //the car'S year model
+    private String year; //the car'S year model
     private boolean available;
     private Customer customer;
     private Image image;
@@ -23,11 +23,17 @@ public class Car {
     private String insuranceCompName;
     private String insuranceCompPhoneNumber;
     private double currentKmstatus;
-    private Date nextMaintenance;
+    private String nextMaintenance;
     private double fuelIndicator;
     private ArrayList<Customer> customers = new ArrayList<>();
 
-    public Car(String id, String name, String make, String model, String licenseNumber, int year, boolean available, Customer customer, Image image, int maxPerson, CarAddress carAddress, ArrayList<Lease> leases, double priceProKm, String insuranceCompName, String insuranceCompPhoneNumber, double currentKmstatus, Date nextMaintenance, double fuelIndicator) {
+    public Car(int id,String name,String licenseNumber) {
+        this.id = id;
+        this.name = name;
+        this.licenseNumber = licenseNumber;
+    }
+
+    public Car(int id, String name, String make, String model, String licenseNumber, String year, boolean available, Customer customer, Image image, int maxPerson, CarAddress carAddress, ArrayList<Lease> leases, double priceProKm, String insuranceCompName, String insuranceCompPhoneNumber, double currentKmstatus, String nextMaintenance, double fuelIndicator) {
         this.id = id;
         this.name = name;
         this.make = make;
@@ -48,11 +54,11 @@ public class Car {
         this.fuelIndicator = fuelIndicator;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -88,11 +94,11 @@ public class Car {
         return licenseNumber;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
@@ -177,11 +183,11 @@ public class Car {
         return currentKmstatus;
     }
 
-    public void setNextMaintenance(Date nextMaintenance) {
+    public void setNextMaintenance(String nextMaintenance) {
         this.nextMaintenance = nextMaintenance;
     }
 
-    public Date getNextMaintenance() {
+    public String getNextMaintenance() {
         return nextMaintenance;
     }
 
@@ -204,12 +210,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", licenseNumber='" + licenseNumber + '\'' +
-                '}';
+        return "Id: "+ id +"\n" +name + "\n"  + licenseNumber ;
     }
 }

@@ -11,9 +11,14 @@ import java.util.Date;
 public class DatabaseConnection {
 
     private static ObservableList<Customer> customerList;
+    private static ObservableList<Car> carList;
     private static ObservableList<Employee> employeeList;
+    private static ObservableList<Lease> leaseList;
     private static ObservableList<PersonAddress> addressList;
+    private static ObservableList<CarAddress> carAddressList;
     private static ObservableList<PaymentInformation> paymentInfoList;
+
+    private static AutoRentalSystem ars = new AutoRentalSystem();
 
     public Connection databaseLink;
 
@@ -367,9 +372,12 @@ public class DatabaseConnection {
             e.getCause();
         }
 
+
         for(int i = 0;i<employeeList.size();i++) {
             System.out.println(employeeList.get(i));
         }
+
+
 
 
         return employeeList;
@@ -466,5 +474,285 @@ public class DatabaseConnection {
 
     }
 
+    public ObservableList createAllLeases() {
 
+        leaseList = FXCollections.observableArrayList();
+        leaseList .clear();
+        Connection connectDb = this.getConnection();
+        String tableSQL = "SELECT * FROM lease ";
+
+        //createAllCustomers();
+        //createAllCars();
+
+        try {
+            Statement statement = connectDb.createStatement();
+            ResultSet queryResult = statement.executeQuery(tableSQL);
+
+
+
+            while(queryResult.next()) {
+
+                Customer customer = searchCustomer(queryResult.getInt("customer_id"));
+                Car car = searchCar(queryResult.getInt("car_id"));
+                Lease lease = new Lease(
+                        queryResult.getInt("lease_id"),
+                        customer,
+                        car);
+
+                leaseList.add(lease);
+
+                //databasede start ve end date türünü stringe çevir
+
+
+                lease.setStartDate(queryResult.getString("start_date"));
+                lease.setEndDate(queryResult.getString("end_date"));
+                lease.setPrice(queryResult.getDouble("price"));
+                lease.setDuration(queryResult.getInt("duration"));
+                lease.setStartKm(queryResult.getDouble("start_km"));
+                lease.setEndKm(queryResult.getDouble("end_km"));
+                lease.setPriceProKm(queryResult.getDouble("price_pro_km"));
+                lease.setInsuranceCosts(queryResult.getDouble("insurance_costs"));
+                lease.setClosed(queryResult.getBoolean("closed"));
+
+                Employee employee = searchEmployee(queryResult.getInt("employee_id"));
+                lease.setSupervisingEmployee(employee);
+
+
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
+        /*
+
+        for(int i = 0;i<leaseList.size();i++) {
+            System.out.println(leaseList.get(i));
+        }
+
+         */
+
+
+        return leaseList;
+    }
+
+    public void deleteLease(Lease lease) {
+        //silince customer'ın address ve payment information
+        //ile de bağlantısı kesiliyo
+        //tekrardan eklerken onlarla bağlantısını
+        //da tekrardan ayarlamak gerekiyo yoksa hata veriyo
+
+        Connection connectDb = this.getConnection();
+
+        String tableSQL = "DELETE FROM lease WHERE lease_id = " + lease.getId();
+
+        try {
+            Statement statement = connectDb.createStatement();
+            statement.execute(tableSQL);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
+    }
+
+    public void editLease(Lease lease) {
+
+        Connection connectDb = this.getConnection();
+        String SQL;
+        if(lease.isClosed()) {
+            SQL = "UPDATE lease SET customer_id = " +lease.getCustomer().getId()+ ",car_id = "+lease.getRentedCar().getId()+",start_date = '" + lease.getStartDate() +"',end_date = '"+ lease.getEndDate()+"',price="+lease.getPrice()+",duration = " +lease.getDuration()+ ",start_km = "+lease.getStartKm()+",end_km = " + lease.getEndKm() +",price_pro_km = "+ lease.getPriceProKm()+",insurance_costs = "+ lease.getInsuranceCosts() +",closed = 1"+ ",employee_id= " + lease.getSupervisingEmployee().getId()+" WHERE lease_id =  " + lease.getId();
+        }else{
+            SQL = "UPDATE lease SET customer_id = " +lease.getCustomer().getId()+ ",car_id = "+lease.getRentedCar().getId()+",start_date = '" + lease.getStartDate() +"',end_date = '"+ lease.getEndDate()+"',price="+lease.getPrice()+",duration = " +lease.getDuration()+ ",start_km = "+lease.getStartKm()+",end_km = " + lease.getEndKm() +",price_pro_km = "+ lease.getPriceProKm()+",insurance_costs = "+ lease.getInsuranceCosts() +",closed = 0"+ ",employee_id= " + lease.getSupervisingEmployee().getId()+" WHERE lease_id =  " + lease.getId();
+        }
+
+
+        try {
+            Statement statement = connectDb.createStatement();
+            statement.execute(SQL);
+
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
+
+
+    }
+
+    public void addLease(int customer_id,int car_id,int employee_id,String startDate,String endDate,double price,double insuranceCosts,boolean closed,int duration,double startKm,double endKm,double priceProKm) {
+
+        Connection connectDb = this.getConnection();
+
+
+        //INSERT INTO lease VALUES(NULL,1,1,'2022-03-11','2022-03-15',122.09,5,31.0,61.5,4.98,20,TRUE,2,NULL);
+
+        //yeni lease oluştur
+        String SQL = "INSERT INTO lease VALUES(NULL," + customer_id + ","+ car_id + ",'"+ startDate + "','"+ endDate + "',"+ price +","+duration+","+startKm+","+endKm+","+priceProKm+","+insuranceCosts+","+closed+"," +employee_id+",NULL);" ;
+
+
+
+        try {
+            Statement statement = connectDb.createStatement();
+            statement.execute(SQL);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
+    }
+
+    public Customer searchCustomer(int id) {
+        Customer customer;
+        createAllCustomers();
+        for(int i = 0; i<customerList.size(); i++)
+        {
+            customer= (Customer) customerList.get(i);
+            if(customer.getId() == id) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    public Car searchCar(int id) {
+        Car car;
+        createAllCars();
+        for(int i = 0; i<carList.size(); i++)
+        {
+            car = (Car) carList.get(i);
+            if(car.getId() == id) {
+                return car;
+            }
+        }
+        return null;
+    }
+
+    public Employee searchEmployee(int id) {
+        Employee employee;
+        createAllEmployees();
+        for(int i = 0; i<employeeList.size(); i++)
+        {
+            employee = (Employee) employeeList.get(i);
+            if(employee.getId() == id) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
+    public ObservableList createAllCars() {
+
+        carList = FXCollections.observableArrayList();
+        carList.clear();
+        Connection connectDb = this.getConnection();
+        String tableSQL = "SELECT * FROM car ";
+
+        getAllCarAddresses();
+
+
+        try {
+            Statement statement = connectDb.createStatement();
+            ResultSet queryResult = statement.executeQuery(tableSQL);
+
+
+            while(queryResult.next()) {
+                Car car = new Car(
+                        queryResult.getInt("car_id"),
+                        queryResult.getString("car_name"),
+                        queryResult.getString("license_number")
+
+                );
+                carList.add(car);
+                //System.out.println(car);
+                car.setMake(queryResult.getString("car_make"));
+                car.setModel(queryResult.getString("car_model"));
+                car.setYear(queryResult.getString("car_year"));
+                car.setAvailable(queryResult.getBoolean("available"));
+                car.setMaxPerson(queryResult.getInt("max_person"));
+                for(int i = 0; i<carAddressList.size(); i++)
+                {
+                    CarAddress carAddress = (CarAddress) carAddressList.get(i);
+                    if(carAddress.getId() == queryResult.getInt("address_id")) {
+                        car.setCarAddress(carAddress);
+                    }
+                }
+                car.setPriceProKm(queryResult.getDouble("price_pro_km"));
+                car.setInsuranceCompName(queryResult.getString("insurance_comp_name"));
+                car.setInsuranceCompPhoneNumber(queryResult.getString("insurance_comp_phone_number"));
+                car.setCurrentKmstatus(queryResult.getDouble("current_km_status"));
+                car.setNextMaintenance(queryResult.getString("next_maintenance"));
+                car.setFuelIndicator(queryResult.getDouble("fuel_indicator"));
+
+
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
+        /*
+        for(int i = 0;i<carList.size();i++) {
+            System.out.println(carList.get(i));
+        }
+
+
+         */
+
+        return carList;
+    }
+
+    public void getAllCarAddresses() {
+
+        carAddressList = FXCollections.observableArrayList();
+
+        Connection connectDb = this.getConnection();
+        String tableSQL2 = "SELECT * FROM car_address";
+
+        try {
+            Statement statement2 = connectDb.createStatement();
+            ResultSet queryResult2 = statement2.executeQuery(tableSQL2);
+            while(queryResult2.next()) {
+                CarAddress address = new CarAddress(
+                        queryResult2.getInt("address_id"),
+                        queryResult2.getString("country"),
+                        queryResult2.getString("district"),
+                        queryResult2.getString("street"),
+                        queryResult2.getString("zip_code"),
+                        queryResult2.getInt("number_parking_spot")
+
+
+                );
+                carAddressList.add(address);
+
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
+    }
+
+
+    public void changePassword(String username,String newPassword) {
+        Connection connectDb = this.getConnection();
+        String SQL = "UPDATE employee SET pass = '" + newPassword +"' WHERE username =  '" + username +"';";
+
+        try {
+            Statement statement = connectDb.createStatement();
+            statement.execute(SQL);
+
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 }

@@ -103,6 +103,16 @@ public class employeesController implements Initializable {
 
     }
 
+    public void switchToLogout(ActionEvent event) throws IOException{
+
+        root = FXMLLoader.load(getClass().getResource("logout.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
     public void buildData() {
 
         idCol.setCellValueFactory(new PropertyValueFactory("id"));
@@ -188,8 +198,8 @@ public class employeesController implements Initializable {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("No Selection");
-            alert.setHeaderText("No Customer Selected");
-            alert.setContentText("Please select a customer in the table.");
+            alert.setHeaderText("No Employee Selected");
+            alert.setContentText("Please select a employee in the table.");
             alert.showAndWait();
         }
 
@@ -241,10 +251,11 @@ public class employeesController implements Initializable {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("No Selection");
-            alert.setHeaderText("No Customer Selected");
-            alert.setContentText("Please select a customer in the table.");
+            alert.setHeaderText("No Employee Selected");
+            alert.setContentText("Please select a employee in the table.");
             alert.showAndWait();
         }
+        refreshTable();
 
 
 

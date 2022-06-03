@@ -112,7 +112,7 @@ public class Customer extends Person {
 
     @Override
     public String toString() {
-        return "Customer\n" + "Id: " + id + "\nName: " + name + "\nSurname: " + surname + "\n";
+        return  "Id: " + id + "\nName: " + name + "\nSurname: " + surname + "\n";
     }
 
 

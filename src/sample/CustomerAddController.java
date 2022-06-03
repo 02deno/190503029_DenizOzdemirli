@@ -83,7 +83,7 @@ public class CustomerAddController implements Initializable {
 
 
 
-            connectNow.addCustomer(first_name,last_name,driving_license_number,country,district,street,zipCode,homeNumber,email,phoneNumber1,phoneNumber2,cardType, cardNumber,expiryDate, cardCode);
+            //connectNow.addCustomer(first_name,last_name,driving_license_number,country,district,street,zipCode,homeNumber,email,phoneNumber1,phoneNumber2,cardType, cardNumber,expiryDate, cardCode);
             Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
             stage.close();
         }
@@ -172,6 +172,8 @@ public class CustomerAddController implements Initializable {
     public void cancel(ActionEvent event) {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.close();
+        customersController customersController = new customersController();
+        customersController.refreshTable();
     }
 
     @Override

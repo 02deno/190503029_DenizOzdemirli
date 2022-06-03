@@ -110,6 +110,16 @@ public class customersController implements Initializable {
 
     }
 
+    public void switchToLogout(ActionEvent event) throws IOException{
+
+        root = FXMLLoader.load(getClass().getResource("logout.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -258,6 +268,7 @@ public class customersController implements Initializable {
             alert.setContentText("Please select a customer in the table.");
             alert.showAndWait();
         }
+        refreshTable();
 
     }
 

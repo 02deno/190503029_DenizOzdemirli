@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -153,6 +155,26 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Line endX="20.0" startX="204.95909118652344" stroke="#a1efff8f">
+               <VBox.margin>
+                  <Insets left="7.0" />
+               </VBox.margin>
+            </Line>
+            <Button fx:id="settingsButton1" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#switchToLogout" prefHeight="36.0" prefWidth="192.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="Logout" textFill="#0a0a0a">
+               <padding>
+                  <Insets bottom="3.0" left="10.0" />
+               </padding>
+               <font>
+                  <Font name="AppleGothic Regular" size="24.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/660350.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </VBox>
       <Button fx:id="carsButton1" alignment="BOTTOM_LEFT" layoutX="212.0" layoutY="23.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="197.0" style="-fx-background-color: #EDE7DC#EDE7DC #EDE7DC#EDE7DC #EDE7DC#EDE7DC #EDE7DC#EDE7DC;" text="Cars" textFill="#0a0a0a">
@@ -170,5 +192,27 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="newButton" layoutX="709.0" layoutY="107.0" mnemonicParsing="false" onAction="#switchtoAddDialog" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="New" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="editButton" layoutX="709.0" layoutY="143.0" mnemonicParsing="false" onAction="#switchtoEditDialog" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="Edit " textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteButton" layoutX="709.0" layoutY="179.0" mnemonicParsing="false" onAction="#deleteCar" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="Delete" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Button>
+      <Slider fx:id="slider" layoutX="549.0" layoutY="112.0" />
+      <Button fx:id="viewButton" layoutX="594.0" layoutY="453.0" mnemonicParsing="false" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="View Options" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="13.0" />
+         </font>
+      </Button>
+      <TreeView fx:id="treeView" layoutX="224.0" layoutY="145.0" prefHeight="288.0" prefWidth="470.0" />
    </children>
 </AnchorPane>

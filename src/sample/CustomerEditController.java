@@ -175,6 +175,8 @@ public class CustomerEditController implements Initializable {
     public void cancel(ActionEvent event) {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.close();
+        customersController customersController = new customersController();
+        customersController.refreshTable();
     }
 
 
