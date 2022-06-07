@@ -212,4 +212,8 @@ public class Car {
     public String toString() {
         return "Id: "+ id +"\n" +name + "\n"  + licenseNumber ;
     }
+
+    public String toString2() {
+        return  name + " "+ year +" \n" + maxPerson +  " Seats \nPrice Per Km: " + priceProKm + " £";
+    }
 }

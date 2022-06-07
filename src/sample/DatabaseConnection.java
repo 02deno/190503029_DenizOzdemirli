@@ -755,4 +755,12 @@ public class DatabaseConnection {
             e.getCause();
         }
     }
+
+
+    public void deleteCar(String value) {
+        //value dan arabanın ismini
+        //Çek database de karşılaştır
+        //öyle sil.
+
+    }
 }
