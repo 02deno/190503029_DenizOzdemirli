@@ -209,41 +209,46 @@
          </font>
       </Button>
       <TreeView fx:id="treeView" layoutX="224.0" layoutY="167.0" prefHeight="288.0" prefWidth="470.0" style="-fx-font-size: 20;" />
-      <Slider fx:id="maxSlider" blockIncrement="2.0" layoutX="378.0" layoutY="109.0" majorTickUnit="2.0" max="10.0" minorTickCount="0" prefHeight="38.0" prefWidth="295.0" showTickMarks="true" snapToTicks="true" />
+      <Slider fx:id="mySlider" blockIncrement="2.0" layoutX="378.0" layoutY="109.0" majorTickUnit="2.0" max="10.0" minorTickCount="0" prefHeight="38.0" prefWidth="295.0" showTickMarks="true" snapToTicks="true" value="4.0" />
       <Label layoutX="224.0" layoutY="98.0" prefHeight="47.0" prefWidth="197.0" text="Price Range:" textFill="#0a0a0a">
          <font>
             <Font name="AppleGothic Regular" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="373.0" layoutY="139.0" text="0-2" textFill="#0a0a0a">
+      <Label layoutX="364.0" layoutY="139.0" text="0-1.99" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="594.0" layoutY="139.0" text="8-9.99" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="539.0" layoutY="139.0" text="6-7.99" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="482.0" layoutY="139.0" text="4-5.99" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="423.0" layoutY="139.0" text="2-3.99" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="646.0" layoutY="139.0" text="10-12" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="11.0" />
+         </font>
+      </Label>
+      <Button fx:id="newButton1" layoutX="676.0" layoutY="33.0" mnemonicParsing="false" onAction="#refreshTreeView" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA #B0D2DA#B0D2DA;" text="Refresh" textFill="#0a0a0a">
          <font>
             <Font name="AppleGothic Regular" size="13.0" />
          </font>
-      </Label>
-      <Label layoutX="597.0" layoutY="139.0" text="8-10" textFill="#0a0a0a">
-         <font>
-            <Font name="AppleGothic Regular" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="541.0" layoutY="139.0" text="6-8" textFill="#0a0a0a">
-         <font>
-            <Font name="AppleGothic Regular" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="488.0" layoutY="139.0" text="4-6" textFill="#0a0a0a">
-         <font>
-            <Font name="AppleGothic Regular" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="431.0" layoutY="139.0" text="2-4" textFill="#0a0a0a">
-         <font>
-            <Font name="AppleGothic Regular" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="644.0" layoutY="139.0" text="10-12" textFill="#0a0a0a">
-         <font>
-            <Font name="AppleGothic Regular" size="13.0" />
-         </font>
-      </Label>
+      </Button>
    </children>
 </AnchorPane>

@@ -758,9 +758,93 @@ public class DatabaseConnection {
 
 
     public void deleteCar(String value) {
-        //value dan arabanın ismini
-        //Çek database de karşılaştır
-        //öyle sil.
 
+        Connection connectDb = this.getConnection();
+        String[] splited = value.split("\\s+");
+        String make = splited[0];
+        String model = splited [1];
+        String name = make+" "+model;
+
+
+        String tableSQL = "DELETE FROM car WHERE car_name = '" + name + "';";
+
+        try {
+            Statement statement = connectDb.createStatement();
+            statement.execute(tableSQL);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
+
+
+    }
+
+    public void addCar(String name,String make,String model,String year,String license_number,boolean available,String country,String district,String street,String zipCode,int parkingSpotNumber,int maxPerson,double priceProKm,String insuranceCompName,String insuranceCompNumber,double currentKmStatus,String nextMaintenanceDate,double fuelIndicator) {
+
+        Connection connectDb = this.getConnection();
+        int n = carAddressList.size();
+
+        //INSERT INTO car VALUES(NULL,'Ford Mustang','Ford','Mustang','31SJ1969','2015',TRUE,6,NULL,4.10,'Travelers','05467786736',70.8,'2023-03-09',0.25);
+        String SQL = "INSERT INTO car VALUES(NULL,'" + name + "','"+ make + "','"+ model + "','"+ license_number +"','"+year+"',"+available+","+maxPerson +",NULL,"+priceProKm+",'"+insuranceCompName+"','"+insuranceCompNumber+"',"+currentKmStatus+",'"+nextMaintenanceDate+"',"+fuelIndicator+ ");" ;
+
+        String SQL1 = "INSERT INTO car_address VALUES("+ (n+1) +",'" + country + "','"+ district + "','"+ street + "','"+ zipCode + "',"+ parkingSpotNumber +");" ;
+
+
+        try {
+            Statement statement = connectDb.createStatement();
+            statement.execute(SQL);
+
+            statement.execute(SQL1);
+
+            int address_id = n + 1;
+            String SQL3 = "UPDATE car SET address_id = "+ address_id + " WHERE license_number = '" + license_number+ "';";
+            statement.execute(SQL3);
+
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
+    }
+
+    public void editCar(Car car) {
+        Connection connectDb = this.getConnection();
+
+        String SQL;
+        if(car.isAvailable()) {
+            SQL = "UPDATE car SET car_name = '" +car.getName()+ "',car_make = '"+car.getMake()+"',car_model = '"+ car.getModel()+"',license_number = '"+car.getLicenseNumber()+"',car_year = '" + car.getYear() +"',available = 1"+",max_person = "+car.getMaxPerson() + ",price_pro_km= "+ car.getPriceProKm()+",insurance_comp_name = '"+car.getInsuranceCompName()+"',insurance_comp_phone_number= '"+car.getInsuranceCompPhoneNumber()+"',current_km_status = "+car.getCurrentKmstatus()+",next_maintenance= '"+ car.getNextMaintenance()+"',fuel_indicator = "+car.getFuelIndicator()+" WHERE car_id =  " + car.getId();
+        }else {
+            SQL = "UPDATE car SET car_name = '" +car.getName()+ "',car_make = '"+car.getMake()+"',car_model = '"+ car.getModel()+"',license_number = '"+car.getLicenseNumber()+"',car_year = '" + car.getYear() +"',available = 0"+",max_person = "+car.getMaxPerson() + ",price_pro_km= "+ car.getPriceProKm()+",insurance_comp_name = '"+car.getInsuranceCompName()+"',insurance_comp_phone_number= '"+car.getInsuranceCompPhoneNumber()+"',current_km_status = "+car.getCurrentKmstatus()+",next_maintenance= '"+ car.getNextMaintenance()+"',fuel_indicator = "+car.getFuelIndicator()+" WHERE car_id =  " + car.getId();
+        }
+
+        String SQL1 = "UPDATE car_address SET country = '" +car.getCarAddress().getCountry()+ "',district = '"+car.getCarAddress().getDistrict()+"',street = '" + car.getCarAddress().getStreet() +"',zip_code = '"+ car.getCarAddress().getZipCode()+"', number_parking_spot = "+ car.getCarAddress().getNumberParkingSpot() + " WHERE address_id =  " + car.getCarAddress().getId();
+
+        try {
+            Statement statement = connectDb.createStatement();
+            statement.execute(SQL);
+            statement.execute(SQL1);
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public Car searchCar(String name) {
+        Car car;
+        createAllCars();
+        for(int i = 0; i<carList.size(); i++)
+        {
+            car = (Car) carList.get(i);
+            if(car.getName().equals(name)) {
+                return car;
+            }
+        }
+        return null;
     }
 }

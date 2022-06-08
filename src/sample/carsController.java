@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,7 +36,9 @@ public class carsController implements Initializable {
     private Parent root;
 
     @FXML
-    private Slider slider;
+    private Slider mySlider;
+
+    private static int myPriceRange;
 
     @FXML
     private TreeView treeView;
@@ -107,6 +112,50 @@ public class carsController implements Initializable {
 
         DatabaseConnection connectNow = new DatabaseConnection();
 
+        int selectedIndex = treeView.getSelectionModel().getSelectedIndex();
+        TreeItem selectedItem = (TreeItem) treeView.getSelectionModel().getSelectedItem();
+
+
+
+        if (selectedIndex >= 0) {
+            CarEditController carEditController = new CarEditController();
+            //arabanın ismini çek
+            //database'DE searchCar fonksiyonu yaz
+            //isimle bulsun
+            //daha sonra o araba objesini setCar'a gönder.
+            String[] splited = selectedItem.getValue().toString().split("\\s+");
+            String make = splited[0];
+            String model = splited [1];
+            String name = make+" "+model;
+            //System.out.println(name);
+            Car car = connectNow.searchCar(name);
+            carEditController.setCar(car);
+
+            try {
+                Parent parent = FXMLLoader.load(getClass().getResource("CarEditDialog.fxml"));
+                Scene scene  = new Scene(parent);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+
+            }catch (IOException ioException) {
+                ioException.printStackTrace();
+                ioException.getCause();
+            }
+
+
+
+        }else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Car Selected");
+            alert.setContentText("Please select a car.");
+            alert.showAndWait();
+        }
+
+
 
 
 
@@ -148,6 +197,7 @@ public class carsController implements Initializable {
 
             boolean remove = selectedItem.getParent().getChildren().remove(selectedItem);
             System.out.println(remove);
+            System.out.println((String) selectedItem.getValue());
             connectNow.deleteCar((String) selectedItem.getValue());
 
         }else {
@@ -161,6 +211,55 @@ public class carsController implements Initializable {
 
 
 
+    }
+
+    public void createTreeView(ObservableList<Car> carList) {
+        TreeItem<String> rootItem = new TreeItem<>("Cars") ;
+        treeView.setRoot(rootItem);
+        treeView.setShowRoot(false);
+
+
+        HashMap<String,Integer> hm = new HashMap();
+
+
+
+        //farklı modeller hashmap'e kaydedildi
+        //hangi modelden kaç araba olduğu kaydedildi.
+        for(int i = 0 ; i<carList.size() ; i++) {
+            String carMake = carList.get(i).getMake();
+            if(hm.containsKey(carMake)) {
+                hm.replace(carMake,hm.get(carMake) + 1);
+            }else {
+                hm.put(carMake,1);
+            }
+        }
+
+        //modeller hashmapten çekilip eklendi.
+        TreeItem<String> branchItem;
+        for(String key : hm.keySet()) {
+            branchItem = new TreeItem<>(key) ;
+            rootItem.getChildren().addAll(branchItem);
+        }
+
+
+        TreeItem<String> leafItem;
+        for(int i = 0 ; i<carList.size() ; i++) {
+
+            for(TreeItem<String> item :rootItem.getChildren()) {
+                if(carList.get(i).getMake().equals(item.getValue())) {
+                    //System.out.println(carList.get(i).getMake()+carList.get(i).getModel()+".jpg");
+                    image = new Image(new File("/Users/pc/IdeaProjects/autovermietung/src/sample/"+carList.get(i).getMake()+carList.get(i).getModel()+".jpg").toURI().toString());
+                    ImageView imageView = new ImageView(image);
+                    imageView.setFitHeight(150);
+                    imageView.setFitWidth(200);
+                    leafItem = new TreeItem<String>(carList.get(i).toString2(),imageView) ;
+                    item.getChildren().addAll(leafItem);
+                    break;
+
+                }
+
+            }
+        }
     }
 
     @Override
@@ -234,5 +333,68 @@ public class carsController implements Initializable {
 
             }
         }
+
+
+
+        mySlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                myPriceRange = (int) mySlider.getValue();
+
+                /*
+
+                if(myPriceRange == 0) {
+                    System.out.println("My Price Range: 0-1.99 ");
+
+                }else if(myPriceRange == 2) {
+                    System.out.println("My Price Range: 2-3.99 ");
+                }else if(myPriceRange == 4) {
+                    System.out.println("My Price Range: 4-5.99 ");
+                }else if(myPriceRange == 6) {
+                    System.out.println("My Price Range: 6-7.99 ");
+                }else if(myPriceRange == 8) {
+                    System.out.println("My Price Range: 8-9.99 ");
+                }else if(myPriceRange == 10) {
+                    System.out.println("My Price Range: 10-12 ");
+                }
+
+                 */
+
+                filterTreeView();
+            }
+
+        });
+    }
+
+    public void filterTreeView() {
+        // 0-1.99 : 0
+        // 2-3.99 : 2
+        // 4-5.99 : 4
+        // 6-7.99 : 6
+        // 8-9.99 : 8
+        // 10-12 : 10
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        ObservableList<Car> carList1 = connectNow.createAllCars();
+        ObservableList<Car> filteredCarList ;
+        filteredCarList= FXCollections.observableArrayList();
+
+        for(int i = 0;i<carList1.size();i++) {
+            Car car = carList1.get(i);
+            if (car.getPriceProKm() < myPriceRange + 1.99 && car.getPriceProKm() >= myPriceRange ) {
+                // Filter matches first name.
+                filteredCarList.add(car);
+            }
+        }
+
+        createTreeView(filteredCarList);
+
+
+    }
+
+    public void refreshTreeView() {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        ObservableList<Car> carList = connectNow.createAllCars();
+        createTreeView(carList);
     }
 }
