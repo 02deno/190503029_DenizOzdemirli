@@ -11,13 +11,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
+import javafx.print.PrinterJob;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -323,51 +325,74 @@ public class leasesController implements Initializable {
             tableView.setItems(filteredLeaseList);
         }
 
+        /*
         for(int i = 0;i<filteredLeaseList.size();i++) {
             System.out.println(filteredLeaseList.get(i));
         }
 
-    }
-
-    public PageFormat getPageFormat(PrinterJob pj) {
-
-        PageFormat pageFormat = pj.defaultPage();
-        Paper paper = pageFormat.getPaper();
-
-        double bodyHeight = 10.0;
-        double headerHeight =5.0;
-        double footerHeight = 5.0;
-        double width =   8.0;
-        double height  = headerHeight + bodyHeight + footerHeight;
-        paper.setSize(width,height);
-        paper.setImageableArea(0,10,width,height-1.0);
-
-        pageFormat.setOrientation(PageFormat.PORTRAIT);
-        pageFormat.setPaper(paper);
-
-        return pageFormat;
-    }
-
-
-    public void print () {//GEN-FIRST:event_jButton2ActionPerformed
-        /*
-        PrinterJob pj = PrinterJob.getPrinterJob();
-        LeasePrintable leasePrintable = new LeasePrintable();
-
-        Lease selectedItem = tableView.getSelectionModel().getSelectedItem();
-        leasePrintable.setLease(selectedItem);
-
-        pj.setPrintable(leasePrintable,getPageFormat(pj));
-        try {
-            pj.print();
-
-        }
-        catch (PrinterException ex) {
-            ex.printStackTrace();
-        }
-
          */
 
+    }
+
+    public void print () {
+
+
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+        Lease lease = tableView.getSelectionModel().getSelectedItem();
+
+        if (selectedIndex >= 0) {
+            Node node = new Circle(100, 200, 200);
+            String str = "----------------------------------------------------------------------------------\n" +
+                    "                                  Auto Rental\n" +
+                    "                     No 00000 Address Line One\n" +
+                    "                     Address Line 02 SRI LANKA\n" +
+                    "                   www.facebook.com/CodeGuid\n" +
+                    "                                +94700000000\n" +
+                    "----------------------------------------------------------------------------------------\n" +
+                    "                               Lease Contract\n" +
+                    "----------------------------------------------------------------------------------------\n" +
+                    "Customer : \n"+lease.getCustomer() + "\n" +
+                    "Employee : \n"+lease.getSupervisingEmployee() + "\n" +
+                    "Car : \n"+lease.getRentedCar() + "\n" +
+                    "----------------------------------------------------------------------------------------\n" +
+                    "Total amount:                                        "+lease.getPrice()+" €\n" +
+                    "                                                                 Sign : \n" +
+                    "------------------------------------------------------------------------------------\n" +
+                    "              *************************************\n" +
+                    "                       THANK YOU COME AGAIN            \n" +
+                    "              *************************************\n" +
+                    "                          SOFTWARE BY:Deniz          \n"+
+                    "                     CONTACT: deniz@outlook.com       \n";
+            ;
+
+            Node node1 = new Text(10, 50, str);
+            Text text = new Text();
+            text.setFont(new Font(20));
+            text.setText(str);
+            Node node2 = text;
+
+            Text text1 = new Text();
+            text1.setFont(new Font(40));
+            text1.setText("\n\n\n\n\n             Güzel oldu?");
+            Node node3 = text1;
+
+            PrinterJob job = PrinterJob.createPrinterJob();
+            if (job != null) {
+                boolean success = job.printPage(node2);
+                job.printPage(node3);
+                if (success) {
+                    job.endJob();
+                }
+            }
+
+        }else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Lease Selected");
+            alert.setContentText("Please select a lease in the table.");
+            alert.showAndWait();
+        }
 
     }
 }

@@ -288,9 +288,12 @@ public class employeesController implements Initializable {
             tableView.setItems(filteredEmployeeList);
         }
 
+        /*
         for(int i = 0;i<filteredEmployeeList.size();i++) {
             System.out.println(filteredEmployeeList.get(i));
         }
+
+         */
 
 
 

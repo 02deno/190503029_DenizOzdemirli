@@ -208,7 +208,7 @@
             <Font name="AppleGothic Regular" size="13.0" />
          </font>
       </Button>
-      <TreeView fx:id="treeView" layoutX="224.0" layoutY="167.0" prefHeight="288.0" prefWidth="470.0" style="-fx-font-size: 20;" />
+      <TreeView fx:id="treeView" layoutX="224.0" layoutY="167.0" prefHeight="288.0" prefWidth="470.0" style="-fx-font-size: 14;" />
       <Slider fx:id="mySlider" blockIncrement="2.0" layoutX="378.0" layoutY="109.0" majorTickUnit="2.0" max="10.0" minorTickCount="0" prefHeight="38.0" prefWidth="295.0" showTickMarks="true" snapToTicks="true" value="4.0" />
       <Label layoutX="224.0" layoutY="98.0" prefHeight="47.0" prefWidth="197.0" text="Price Range:" textFill="#0a0a0a">
          <font>

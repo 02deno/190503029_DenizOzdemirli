@@ -214,6 +214,6 @@ public class Car {
     }
 
     public String toString2() {
-        return  name + " "+ year +" \n" + maxPerson +  " Seats \nPrice Per Km: " + priceProKm + " £";
+        return  make  + "-"+ model + "(" + year +") \n" + maxPerson +  " Seats \nPrice Per Km: " + priceProKm + " £";
     }
 }

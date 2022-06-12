@@ -115,21 +115,31 @@ public class carsController implements Initializable {
         int selectedIndex = treeView.getSelectionModel().getSelectedIndex();
         TreeItem selectedItem = (TreeItem) treeView.getSelectionModel().getSelectedItem();
 
-
-
-        if (selectedIndex >= 0) {
+        if(selectedItem.getParent().getValue().toString().equals("Cars")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Car Selected");
+            alert.setContentText("Please select a car not a brand.");
+            alert.showAndWait();
+        }else if (selectedIndex >= 0) {
             CarEditController carEditController = new CarEditController();
             //arabanın ismini çek
             //database'DE searchCar fonksiyonu yaz
             //isimle bulsun
             //daha sonra o araba objesini setCar'a gönder.
-            String[] splited = selectedItem.getValue().toString().split("\\s+");
+            //System.out.println(selectedItem.getValue().toString());
+            String[] splited = selectedItem.getValue().toString().split("-");
+
             String make = splited[0];
-            String model = splited [1];
+            String[] splited2 = splited [1].split("\\(");
+            String model = splited2[0];
             String name = make+" "+model;
-            //System.out.println(name);
+            //System.out.println("make: "+make);
+            //System.out.println("model :" + model);
+            //System.out.println("name: " + name);
             Car car = connectNow.searchCar(name);
             carEditController.setCar(car);
+
 
             try {
                 Parent parent = FXMLLoader.load(getClass().getResource("CarEditDialog.fxml"));
@@ -193,7 +203,13 @@ public class carsController implements Initializable {
         int selectedIndex = treeView.getSelectionModel().getSelectedIndex();
         TreeItem selectedItem = (TreeItem) treeView.getSelectionModel().getSelectedItem();
 
-        if (selectedIndex >= 0) {
+        if(selectedItem.getParent().getValue().toString().equals("Cars")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Car Selected");
+            alert.setContentText("Please select a car not a brand.");
+            alert.showAndWait();
+        }else if (selectedIndex >= 0) {
 
             boolean remove = selectedItem.getParent().getChildren().remove(selectedItem);
             System.out.println(remove);
@@ -248,7 +264,7 @@ public class carsController implements Initializable {
             for(TreeItem<String> item :rootItem.getChildren()) {
                 if(carList.get(i).getMake().equals(item.getValue())) {
                     //System.out.println(carList.get(i).getMake()+carList.get(i).getModel()+".jpg");
-                    image = new Image(new File("/Users/pc/IdeaProjects/autovermietung/src/sample/"+carList.get(i).getMake()+carList.get(i).getModel()+".jpg").toURI().toString());
+                    image = new Image(new File("/Users/pc/IdeaProjects/autovermietung/src/sample/"+carList.get(i).getMake().replaceAll("\\s+","")+carList.get(i).getModel().replaceAll("\\s+","")+".jpg").toURI().toString());
                     ImageView imageView = new ImageView(image);
                     imageView.setFitHeight(150);
                     imageView.setFitWidth(200);
@@ -320,8 +336,8 @@ public class carsController implements Initializable {
 
             for(TreeItem<String> item :rootItem.getChildren()) {
                 if(carList.get(i).getMake().equals(item.getValue())) {
-                    //System.out.println(carList.get(i).getMake()+carList.get(i).getModel()+".jpg");
-                    image = new Image(new File("/Users/pc/IdeaProjects/autovermietung/src/sample/"+carList.get(i).getMake()+carList.get(i).getModel()+".jpg").toURI().toString());
+                    //System.out.println(carList.get(i).getMake().replaceAll("\\s+","")+carList.get(i).getModel().replaceAll("\\s+","")+".jpg");
+                    image = new Image(new File("/Users/pc/IdeaProjects/autovermietung/src/sample/"+carList.get(i).getMake().replaceAll("\\s+","")+carList.get(i).getModel().replaceAll("\\s+","")+".jpg").toURI().toString());
                     ImageView imageView = new ImageView(image);
                     imageView.setFitHeight(150);
                     imageView.setFitWidth(200);

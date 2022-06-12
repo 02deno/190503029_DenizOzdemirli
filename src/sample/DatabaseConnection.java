@@ -372,10 +372,12 @@ public class DatabaseConnection {
             e.getCause();
         }
 
-
+        /*
         for(int i = 0;i<employeeList.size();i++) {
             System.out.println(employeeList.get(i));
         }
+
+         */
 
 
 
@@ -841,7 +843,10 @@ public class DatabaseConnection {
         for(int i = 0; i<carList.size(); i++)
         {
             car = (Car) carList.get(i);
+            //System.out.println(car.getName());
+            //System.out.println(name);
             if(car.getName().equals(name)) {
+                //System.out.println("BULDUM");
                 return car;
             }
         }
