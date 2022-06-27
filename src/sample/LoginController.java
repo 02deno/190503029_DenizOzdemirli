@@ -75,7 +75,7 @@ public class LoginController implements Initializable {
             Main m = new Main();
             m.changeScene("homepage.fxml");
         }else {
-            loginMessageLabel.setText("Invalid login.sni sviom<3 Please try again.");
+            loginMessageLabel.setText("Invalid login.Please try again.");
         }
 
     }
@@ -85,7 +85,7 @@ public class LoginController implements Initializable {
         if(showPassword.isSelected() && passwordTextfield.getText() != "") {
 
             tooltip.setText(passwordTextfield.getText());
-            tooltip.show(passwordTextfield, p.getX() + 340 , p.getY()  + 175 );
+            tooltip.show(passwordTextfield, p.getX() + 295 , p.getY()  + 135 );
         }else {
             tooltip.hide();
         }

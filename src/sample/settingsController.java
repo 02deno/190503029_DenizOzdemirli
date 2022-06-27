@@ -133,7 +133,7 @@ public class settingsController implements Initializable {
 
 
         if (currentPassword.getText() == null || currentPassword.getText().length() == 0 ) {
-            errorMessage += "No valid current Password!\n";
+            errorMessage += "No valid old Password!\n";
         }
         if (newPassword.getText() == null || newPassword.getText().length() == 0) {
             errorMessage += "No valid new Password!\n";
@@ -154,8 +154,8 @@ public class settingsController implements Initializable {
         }
         else if(checkOldPassword == false) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Current password");
-            alert.setHeaderText("Current password is incorrect");
+            alert.setTitle("Old password");
+            alert.setHeaderText("Old password is incorrect");
             alert.setContentText(errorMessage);
 
             alert.showAndWait();

@@ -261,7 +261,7 @@
                         <Label fx:id="employeeLabel" alignment="CENTER" prefHeight="15.0" prefWidth="161.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Start Date" GridPane.rowIndex="3" />
                         <Label fx:id="startDateLabel" alignment="CENTER" prefHeight="15.0" prefWidth="158.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Price Pro Km" GridPane.rowIndex="11" />
+                        <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Price Per Day" GridPane.rowIndex="11" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Insurance Costs" GridPane.rowIndex="10" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Duration" GridPane.rowIndex="9" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Start Km - End Km" GridPane.rowIndex="8" />

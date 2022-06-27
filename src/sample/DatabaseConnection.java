@@ -2,6 +2,8 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -512,7 +514,7 @@ public class DatabaseConnection {
                 lease.setDuration(queryResult.getInt("duration"));
                 lease.setStartKm(queryResult.getDouble("start_km"));
                 lease.setEndKm(queryResult.getDouble("end_km"));
-                lease.setPriceProKm(queryResult.getDouble("price_pro_km"));
+                lease.setPriceProDay(queryResult.getDouble("price_pro_km"));
                 lease.setInsuranceCosts(queryResult.getDouble("insurance_costs"));
                 lease.setClosed(queryResult.getBoolean("closed"));
 
@@ -565,9 +567,9 @@ public class DatabaseConnection {
         Connection connectDb = this.getConnection();
         String SQL;
         if(lease.isClosed()) {
-            SQL = "UPDATE lease SET customer_id = " +lease.getCustomer().getId()+ ",car_id = "+lease.getRentedCar().getId()+",start_date = '" + lease.getStartDate() +"',end_date = '"+ lease.getEndDate()+"',price="+lease.getPrice()+",duration = " +lease.getDuration()+ ",start_km = "+lease.getStartKm()+",end_km = " + lease.getEndKm() +",price_pro_km = "+ lease.getPriceProKm()+",insurance_costs = "+ lease.getInsuranceCosts() +",closed = 1"+ ",employee_id= " + lease.getSupervisingEmployee().getId()+" WHERE lease_id =  " + lease.getId();
+            SQL = "UPDATE lease SET customer_id = " +lease.getCustomer().getId()+ ",car_id = "+lease.getRentedCar().getId()+",start_date = '" + lease.getStartDate() +"',end_date = '"+ lease.getEndDate()+"',price="+lease.getPrice()+",duration = " +lease.getDuration()+ ",start_km = "+lease.getStartKm()+",end_km = " + lease.getEndKm() +",price_pro_km = "+ lease.getPriceProDay()+",insurance_costs = "+ lease.getInsuranceCosts() +",closed = 1"+ ",employee_id= " + lease.getSupervisingEmployee().getId()+" WHERE lease_id =  " + lease.getId();
         }else{
-            SQL = "UPDATE lease SET customer_id = " +lease.getCustomer().getId()+ ",car_id = "+lease.getRentedCar().getId()+",start_date = '" + lease.getStartDate() +"',end_date = '"+ lease.getEndDate()+"',price="+lease.getPrice()+",duration = " +lease.getDuration()+ ",start_km = "+lease.getStartKm()+",end_km = " + lease.getEndKm() +",price_pro_km = "+ lease.getPriceProKm()+",insurance_costs = "+ lease.getInsuranceCosts() +",closed = 0"+ ",employee_id= " + lease.getSupervisingEmployee().getId()+" WHERE lease_id =  " + lease.getId();
+            SQL = "UPDATE lease SET customer_id = " +lease.getCustomer().getId()+ ",car_id = "+lease.getRentedCar().getId()+",start_date = '" + lease.getStartDate() +"',end_date = '"+ lease.getEndDate()+"',price="+lease.getPrice()+",duration = " +lease.getDuration()+ ",start_km = "+lease.getStartKm()+",end_km = " + lease.getEndKm() +",price_pro_km = "+ lease.getPriceProDay()+",insurance_costs = "+ lease.getInsuranceCosts() +",closed = 0"+ ",employee_id= " + lease.getSupervisingEmployee().getId()+" WHERE lease_id =  " + lease.getId();
         }
 
 
@@ -586,7 +588,7 @@ public class DatabaseConnection {
 
     }
 
-    public void addLease(int customer_id,int car_id,int employee_id,String startDate,String endDate,double price,double insuranceCosts,boolean closed,int duration,double startKm,double endKm,double priceProKm) {
+    public void addLease(int customer_id,int car_id,int employee_id,String startDate,String endDate,double price,double insuranceCosts,boolean closed,int duration,double startKm,double endKm,double priceProDay) {
 
         Connection connectDb = this.getConnection();
 
@@ -594,13 +596,19 @@ public class DatabaseConnection {
         //INSERT INTO lease VALUES(NULL,1,1,'2022-03-11','2022-03-15',122.09,5,31.0,61.5,4.98,20,TRUE,2,NULL);
 
         //yeni lease oluştur
-        String SQL = "INSERT INTO lease VALUES(NULL," + customer_id + ","+ car_id + ",'"+ startDate + "','"+ endDate + "',"+ price +","+duration+","+startKm+","+endKm+","+priceProKm+","+insuranceCosts+","+closed+"," +employee_id+",NULL);" ;
+        String SQL = "INSERT INTO lease VALUES(NULL," + customer_id + ","+ car_id + ",'"+ startDate + "','"+ endDate + "',"+ price +","+duration+","+startKm+","+endKm+","+priceProDay+","+insuranceCosts+","+closed+"," +employee_id+",NULL);" ;
+
+        //String SQL2 = "INSERT INTO works_with VALUES(" + employee_id+","+customer_id+");";
+
+        //String SQL3 = "INSERT INTO rents VALUES(" + car_id+","+customer_id+");";
 
 
 
         try {
             Statement statement = connectDb.createStatement();
             statement.execute(SQL);
+            //statement.execute(SQL2);
+            //statement.execute(SQL3);
 
         }catch (Exception e) {
             e.printStackTrace();
@@ -684,7 +692,7 @@ public class DatabaseConnection {
                         car.setCarAddress(carAddress);
                     }
                 }
-                car.setPriceProKm(queryResult.getDouble("price_pro_km"));
+                car.setPriceProDay(queryResult.getDouble("price_pro_km"));
                 car.setInsuranceCompName(queryResult.getString("insurance_comp_name"));
                 car.setInsuranceCompPhoneNumber(queryResult.getString("insurance_comp_phone_number"));
                 car.setCurrentKmstatus(queryResult.getDouble("current_km_status"));
@@ -762,10 +770,13 @@ public class DatabaseConnection {
     public void deleteCar(String value) {
 
         Connection connectDb = this.getConnection();
-        String[] splited = value.split("\\s+");
+        //System.out.println(value);
+        String[] splited = value.split("\\-");
         String make = splited[0];
-        String model = splited [1];
+        String[] splited2 = splited [1].split("\\(");
+        String model = splited2 [0];
         String name = make+" "+model;
+        System.out.println("name: " + value);
 
 
         String tableSQL = "DELETE FROM car WHERE car_name = '" + name + "';";
@@ -783,13 +794,13 @@ public class DatabaseConnection {
 
     }
 
-    public void addCar(String name,String make,String model,String year,String license_number,boolean available,String country,String district,String street,String zipCode,int parkingSpotNumber,int maxPerson,double priceProKm,String insuranceCompName,String insuranceCompNumber,double currentKmStatus,String nextMaintenanceDate,double fuelIndicator) {
+    public void addCar(String name, String make, String model, String year, String license_number, boolean available, String country, String district, String street, String zipCode, int parkingSpotNumber, int maxPerson, double priceProDay, String insuranceCompName, String insuranceCompNumber, double currentKmStatus, String nextMaintenanceDate, double fuelIndicator) {
 
         Connection connectDb = this.getConnection();
         int n = carAddressList.size();
 
         //INSERT INTO car VALUES(NULL,'Ford Mustang','Ford','Mustang','31SJ1969','2015',TRUE,6,NULL,4.10,'Travelers','05467786736',70.8,'2023-03-09',0.25);
-        String SQL = "INSERT INTO car VALUES(NULL,'" + name + "','"+ make + "','"+ model + "','"+ license_number +"','"+year+"',"+available+","+maxPerson +",NULL,"+priceProKm+",'"+insuranceCompName+"','"+insuranceCompNumber+"',"+currentKmStatus+",'"+nextMaintenanceDate+"',"+fuelIndicator+ ");" ;
+        String SQL = "INSERT INTO car VALUES(NULL,'" + name + "','"+ make + "','"+ model + "','"+ license_number +"','"+year+"',"+available+","+maxPerson +",NULL,"+priceProDay+",'"+insuranceCompName+"','"+insuranceCompNumber+"',"+currentKmStatus+",'"+nextMaintenanceDate+"',"+fuelIndicator+ ");" ;
 
         String SQL1 = "INSERT INTO car_address VALUES("+ (n+1) +",'" + country + "','"+ district + "','"+ street + "','"+ zipCode + "',"+ parkingSpotNumber +");" ;
 
@@ -818,9 +829,9 @@ public class DatabaseConnection {
 
         String SQL;
         if(car.isAvailable()) {
-            SQL = "UPDATE car SET car_name = '" +car.getName()+ "',car_make = '"+car.getMake()+"',car_model = '"+ car.getModel()+"',license_number = '"+car.getLicenseNumber()+"',car_year = '" + car.getYear() +"',available = 1"+",max_person = "+car.getMaxPerson() + ",price_pro_km= "+ car.getPriceProKm()+",insurance_comp_name = '"+car.getInsuranceCompName()+"',insurance_comp_phone_number= '"+car.getInsuranceCompPhoneNumber()+"',current_km_status = "+car.getCurrentKmstatus()+",next_maintenance= '"+ car.getNextMaintenance()+"',fuel_indicator = "+car.getFuelIndicator()+" WHERE car_id =  " + car.getId();
+            SQL = "UPDATE car SET car_name = '" +car.getName()+ "',car_make = '"+car.getMake()+"',car_model = '"+ car.getModel()+"',license_number = '"+car.getLicenseNumber()+"',car_year = '" + car.getYear() +"',available = 1"+",max_person = "+car.getMaxPerson() + ",price_pro_km= "+ car.getPriceProDay()+",insurance_comp_name = '"+car.getInsuranceCompName()+"',insurance_comp_phone_number= '"+car.getInsuranceCompPhoneNumber()+"',current_km_status = "+car.getCurrentKmstatus()+",next_maintenance= '"+ car.getNextMaintenance()+"',fuel_indicator = "+car.getFuelIndicator()+" WHERE car_id =  " + car.getId();
         }else {
-            SQL = "UPDATE car SET car_name = '" +car.getName()+ "',car_make = '"+car.getMake()+"',car_model = '"+ car.getModel()+"',license_number = '"+car.getLicenseNumber()+"',car_year = '" + car.getYear() +"',available = 0"+",max_person = "+car.getMaxPerson() + ",price_pro_km= "+ car.getPriceProKm()+",insurance_comp_name = '"+car.getInsuranceCompName()+"',insurance_comp_phone_number= '"+car.getInsuranceCompPhoneNumber()+"',current_km_status = "+car.getCurrentKmstatus()+",next_maintenance= '"+ car.getNextMaintenance()+"',fuel_indicator = "+car.getFuelIndicator()+" WHERE car_id =  " + car.getId();
+            SQL = "UPDATE car SET car_name = '" +car.getName()+ "',car_make = '"+car.getMake()+"',car_model = '"+ car.getModel()+"',license_number = '"+car.getLicenseNumber()+"',car_year = '" + car.getYear() +"',available = 0"+",max_person = "+car.getMaxPerson() + ",price_pro_km= "+ car.getPriceProDay()+",insurance_comp_name = '"+car.getInsuranceCompName()+"',insurance_comp_phone_number= '"+car.getInsuranceCompPhoneNumber()+"',current_km_status = "+car.getCurrentKmstatus()+",next_maintenance= '"+ car.getNextMaintenance()+"',fuel_indicator = "+car.getFuelIndicator()+" WHERE car_id =  " + car.getId();
         }
 
         String SQL1 = "UPDATE car_address SET country = '" +car.getCarAddress().getCountry()+ "',district = '"+car.getCarAddress().getDistrict()+"',street = '" + car.getCarAddress().getStreet() +"',zip_code = '"+ car.getCarAddress().getZipCode()+"', number_parking_spot = "+ car.getCarAddress().getNumberParkingSpot() + " WHERE address_id =  " + car.getCarAddress().getId();
@@ -849,6 +860,40 @@ public class DatabaseConnection {
                 //System.out.println("BULDUM");
                 return car;
             }
+        }
+        return null;
+    }
+
+    public int isAvailable() {
+        createAllCars();
+        int counter=0;
+        Car car;
+        for(int i = 0; i<carList.size(); i++)
+        {
+            car = (Car) carList.get(i);
+            if(car.isAvailable()) {
+                counter++;
+
+            }
+        }
+        return counter;
+    }
+
+    public String getRolle(String username) {
+
+        Connection connectDb = this.getConnection();
+        String tableSQL2 = "SELECT roll FROM employee WHERE username = '" +username+"';";
+        String roll;
+        try {
+            Statement statement2 = connectDb.createStatement();
+            ResultSet queryResult2 = statement2.executeQuery(tableSQL2);
+            while(queryResult2.next()) {
+                roll = queryResult2.getString("roll");
+                return roll;
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+            e.getCause();
         }
         return null;
     }

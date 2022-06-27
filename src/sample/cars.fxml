@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TreeView?>
@@ -240,7 +241,7 @@
             <Font name="AppleGothic Regular" size="11.0" />
          </font>
       </Label>
-      <Label layoutX="646.0" layoutY="139.0" text="10-12" textFill="#0a0a0a">
+      <Label layoutX="646.0" layoutY="139.0" text="10+" textFill="#0a0a0a">
          <font>
             <Font name="AppleGothic Regular" size="11.0" />
          </font>
@@ -250,5 +251,11 @@
             <Font name="AppleGothic Regular" size="13.0" />
          </font>
       </Button>
+      <CheckBox fx:id="available" layoutX="345.0" layoutY="81.0" mnemonicParsing="false" />
+      <Label layoutX="224.0" layoutY="71.0" text="Available:" textFill="#0a0a0a">
+         <font>
+            <Font name="AppleGothic Regular" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

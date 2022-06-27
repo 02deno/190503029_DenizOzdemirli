@@ -186,7 +186,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="158.0">
                <children>
-                  <TableView fx:id="tableView" layoutX="-44.0" layoutY="5.0" prefHeight="256.0" prefWidth="218.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                  <TableView id="table-view" fx:id="tableView" layoutX="-44.0" layoutY="5.0" prefHeight="256.0" prefWidth="218.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="idCol" prefWidth="40.0" text="ID" />
                       <TableColumn fx:id="firstNameCol" prefWidth="70.0" text="First Name" />

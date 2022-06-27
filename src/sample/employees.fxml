@@ -227,8 +227,8 @@
                   </Label>
                   <GridPane layoutX="9.0" layoutY="43.0" prefHeight="207.0" prefWidth="251.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="42.0">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.1973876953125" minWidth="10.0" prefWidth="100.15789794921875" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.84210205078125" minWidth="10.0" prefWidth="156.84210205078125" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.1973876953125" minWidth="10.0" prefWidth="84.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="165.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints maxHeight="27.394744873046875" minHeight="10.0" prefHeight="16.578964233398438" vgrow="SOMETIMES" />
@@ -242,15 +242,15 @@
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="ID" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="112.0" text="First Name" GridPane.rowIndex="1" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Last Name" GridPane.rowIndex="2" />
-                        <Label fx:id="idLabel" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" />
-                        <Label fx:id="firstNameLabel" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="lastNameLabel" alignment="CENTER" prefHeight="15.0" prefWidth="158.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="idLabel" alignment="CENTER" prefHeight="15.0" prefWidth="166.0" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="firstNameLabel" alignment="CENTER" prefHeight="15.0" prefWidth="167.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lastNameLabel" alignment="CENTER" prefHeight="15.0" prefWidth="165.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="114.0" text="Address" GridPane.rowIndex="3" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="115.0" text="Email" GridPane.rowIndex="4" />
                         <Label alignment="CENTER" prefHeight="15.0" prefWidth="126.0" text="Phonenumber" GridPane.rowIndex="5" />
-                        <Label fx:id="addressLabel" alignment="CENTER" prefHeight="53.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="emailLabel" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="phoneNumber1Label" alignment="CENTER" prefHeight="15.0" prefWidth="157.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="addressLabel" alignment="CENTER" prefHeight="53.0" prefWidth="168.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="emailLabel" alignment="CENTER" prefHeight="15.0" prefWidth="167.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="phoneNumber1Label" alignment="CENTER" prefHeight="15.0" prefWidth="165.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                   <ButtonBar layoutX="1.0" layoutY="299.0" prefHeight="40.0" prefWidth="200.0">

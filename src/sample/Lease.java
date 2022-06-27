@@ -13,7 +13,7 @@ public class Lease {
     private int duration;
     private double startKm;
     private double endKm;
-    private double priceProKm;
+    private double priceProDay;
     private double insuranceCosts;
     private boolean closed;
     private Employee supervisingEmployee;
@@ -37,7 +37,7 @@ public class Lease {
 
     }
 
-    public Lease(int id, Customer customer, Car rentedCar, String startDate, String endDate, double price, int duration, double startKm, double endKm, double priceProKm, double insuranceCosts, boolean closed, Employee supervisingEmployee, Bill bill) {
+    public Lease(int id, Customer customer, Car rentedCar, String startDate, String endDate, double price, int duration, double startKm, double endKm, double priceProDay, double insuranceCosts, boolean closed, Employee supervisingEmployee, Bill bill) {
         this.id = id;
         this.customer = customer;
         this.rentedCar = rentedCar;
@@ -47,7 +47,7 @@ public class Lease {
         this.duration = duration;
         this.startKm = startKm;
         this.endKm = endKm;
-        this.priceProKm = priceProKm;
+        this.priceProDay = priceProDay;
         this.insuranceCosts = insuranceCosts;
         this.closed = closed;
         this.supervisingEmployee = supervisingEmployee;
@@ -126,12 +126,12 @@ public class Lease {
         return endKm;
     }
 
-    public void setPriceProKm(double priceProKm) {
-        this.priceProKm = priceProKm;
+    public void setPriceProDay(double priceProDay) {
+        this.priceProDay = priceProDay;
     }
 
-    public double getPriceProKm() {
-        return priceProKm;
+    public double getPriceProDay() {
+        return priceProDay;
     }
 
     public void setInsuranceCosts(double insuranceCosts) {
@@ -167,7 +167,7 @@ public class Lease {
     }
 
     public double calculatePrice() {
-        return (endKm-startKm)*priceProKm + insuranceCosts;
+        return (priceProDay*duration) + insuranceCosts;
     }
 
     @Override
@@ -182,7 +182,7 @@ public class Lease {
                 "\nduration=" + duration +
                 "\nstartKm=" + startKm +
                 ", endKm=" + endKm +
-                "\npriceProKm=" + priceProKm +
+                "\npricePerDay=" + priceProDay +
                 ", insuranceCosts=" + insuranceCosts +
                 "\nclosed=" + closed +
                 "\nsupervisingEmployee:\n" + supervisingEmployee ;

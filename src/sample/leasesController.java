@@ -180,7 +180,7 @@ public class leasesController implements Initializable {
             startendKmLabel.setText(""+lease.getStartKm()+"-"+lease.getEndKm());
             durationLabel.setText(""+lease.getDuration());
             insuranceLabel.setText(""+lease.getInsuranceCosts());
-            priceProKmLabel.setText(""+lease.getPriceProKm());
+            priceProKmLabel.setText(""+lease.getPriceProDay());
 
         }else {
             idLabel.setText("");
@@ -341,28 +341,25 @@ public class leasesController implements Initializable {
         Lease lease = tableView.getSelectionModel().getSelectedItem();
 
         if (selectedIndex >= 0) {
-            Node node = new Circle(100, 200, 200);
-            String str = "----------------------------------------------------------------------------------\n" +
+            //Node node = new Circle(100, 200, 200);
+            String str = "----------------------------------------------------------------------------------------\n"+
                     "                                  Auto Rental\n" +
-                    "                     No 00000 Address Line One\n" +
-                    "                     Address Line 02 SRI LANKA\n" +
-                    "                   www.facebook.com/CodeGuid\n" +
+                    "                           www.autorental.com\n" +
                     "                                +94700000000\n" +
                     "----------------------------------------------------------------------------------------\n" +
-                    "                               Lease Contract\n" +
-                    "----------------------------------------------------------------------------------------\n" +
-                    "Customer : \n"+lease.getCustomer() + "\n" +
+                    "                               Lease Contract\n\n" +
+                    "This Agreement will begin on " + lease.getStartDate()+" and remain \n" +
+                    "in full force and effect until the Vehicle is returned to\n" +
+                    "the Owner. It is agreed that the Renter will return\n" +
+                    "the Vehicle on " +lease.getEndDate()+" unless the Agreement is\n" +
+                    "terminated earlier.\n\n" +
+                    "Customer : \n"+lease.getCustomer().toString2() + "\n" +
                     "Employee : \n"+lease.getSupervisingEmployee() + "\n" +
-                    "Car : \n"+lease.getRentedCar() + "\n" +
-                    "----------------------------------------------------------------------------------------\n" +
-                    "Total amount:                                        "+lease.getPrice()+" €\n" +
-                    "                                                                 Sign : \n" +
-                    "------------------------------------------------------------------------------------\n" +
-                    "              *************************************\n" +
-                    "                       THANK YOU COME AGAIN            \n" +
-                    "              *************************************\n" +
-                    "                          SOFTWARE BY:Deniz          \n"+
-                    "                     CONTACT: deniz@outlook.com       \n";
+                    "Car : \n"+lease.getRentedCar().toString3() + "\n\n" +
+                    "                                                          Total amount: "+lease.getPrice()+" €\n" +
+                    "                                                          Date : \n"+
+                    "                                                          Sign : \n" ;
+
             ;
 
             Node node1 = new Text(10, 50, str);
@@ -379,7 +376,7 @@ public class leasesController implements Initializable {
             PrinterJob job = PrinterJob.createPrinterJob();
             if (job != null) {
                 boolean success = job.printPage(node2);
-                job.printPage(node3);
+                //job.printPage(node3);
                 if (success) {
                     job.endJob();
                 }

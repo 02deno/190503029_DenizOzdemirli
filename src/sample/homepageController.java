@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,15 +9,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class homepageController implements Initializable {
@@ -28,25 +34,20 @@ public class homepageController implements Initializable {
 
     private String currentOption;
 
-
+    @FXML
+    private Label allCars;
 
     @FXML
-    private Button homepageButton;
+    private Label availableCars;
 
     @FXML
-    private Button carsButton;
+    private BarChart<?,?> grafik;
 
     @FXML
-    private Button customersButton;
+    private CategoryAxis xAxis;
 
     @FXML
-    private Button leasesButton;
-
-    @FXML
-    private Button employeesButton;
-
-    @FXML
-    private Button settingsButton;
+    private NumberAxis yAxis;
 
     private Stage stage;
     private Scene scene;
@@ -55,10 +56,12 @@ public class homepageController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //treeView.getStylesheets().add("myTree.css");
 
+        DatabaseConnection connectNow = new DatabaseConnection();
+        ObservableList<Car> carList = connectNow.createAllCars();
 
-
+        allCars.setText(""+carList.size());
+        availableCars.setText(""+connectNow.isAvailable());
 
         TreeItem<String> rootItem = new TreeItem<>("Options") ;
 
@@ -68,6 +71,7 @@ public class homepageController implements Initializable {
         TreeItem<String> branchItem3 = new TreeItem<>("Lease") ;
         TreeItem<String> branchItem4 = new TreeItem<>("Employee") ;
         TreeItem<String> branchItem5 = new TreeItem<>("Settings") ;
+        TreeItem<String> branchItem6 = new TreeItem<>("Logout") ;
 
 
         TreeItem<String> leafItem1 = new TreeItem<>("Add a customer") ;
@@ -79,6 +83,7 @@ public class homepageController implements Initializable {
         TreeItem<String> leafItem7 = new TreeItem<>("Add a lease") ;
         TreeItem<String> leafItem8 = new TreeItem<>("Delete a lease") ;
         TreeItem<String> leafItem9 = new TreeItem<>("Modify a lease") ;
+        TreeItem<String> leafItem18 = new TreeItem<>("Print a lease") ;
         TreeItem<String> leafItem10 = new TreeItem<>("Add an employee") ;
         TreeItem<String> leafItem11 = new TreeItem<>("Delete an employee") ;
         TreeItem<String> leafItem12 = new TreeItem<>("Modify an employee") ;
@@ -88,16 +93,80 @@ public class homepageController implements Initializable {
         TreeItem<String> leafItem15 = new TreeItem<>("Search a lease") ;
         TreeItem<String> leafItem16 = new TreeItem<>("Search an employee") ;
 
-        TreeItem<String> leafItem17 = new TreeItem<>("Log out") ;
+        TreeItem<String> leafItem17 = new TreeItem<>("Change Password") ;
 
         treeView.setRoot(rootItem);
-        rootItem.getChildren().addAll(branchItem1,branchItem2,branchItem3,branchItem4,branchItem5);
+        rootItem.getChildren().addAll(branchItem1,branchItem2,branchItem3,branchItem4,branchItem5,branchItem6);
 
         branchItem1.getChildren().addAll(leafItem1,leafItem2,leafItem3,leafItem13);
         branchItem2.getChildren().addAll(leafItem4,leafItem5,leafItem6,leafItem14);
-        branchItem3.getChildren().addAll(leafItem7,leafItem8,leafItem9,leafItem15);
+        branchItem3.getChildren().addAll(leafItem7,leafItem8,leafItem9,leafItem15,leafItem18);
         branchItem4.getChildren().addAll(leafItem10,leafItem11,leafItem12,leafItem16);
         branchItem5.getChildren().addAll(leafItem17);
+
+
+
+        int x1 = 0;
+        int x2 = 0;
+        int x3 = 0;
+        int x4 = 0;
+        int x5 = 0;
+        int x6 = 0;
+
+
+        for(Car car : carList) {
+            double price = car.getPriceProDay();
+            if(price>0 &&  price < 2) {
+                x1++;
+            }else if(price>1.99 &&  price < 4) {
+                x2++;
+            }else if(price>3.99 &&  price < 6) {
+                x3++;
+            }else if(price>5.99 &&  price < 8) {
+                x4++;
+            }else if(price>7.99 &&  price < 10) {
+                x5++;
+            }else if(price>9.99) {
+                x6++;
+            }
+        }
+
+        /*
+        System.out.println(x1);
+        System.out.println(x2);
+        System.out.println(x3);
+        System.out.println(x4);
+        System.out.println(x5);
+        System.out.println(x6);
+
+
+         */
+
+        //Defining the x axis
+        xAxis = new CategoryAxis();
+
+        xAxis.setCategories(FXCollections.<String>observableArrayList(Arrays.asList(
+                "0-1.99", "2-3.99", "4-5.99", "6-7.99","8-9.99","10+")));
+        xAxis.setLabel("Rent Prices");
+
+//Defining the y axis.
+        yAxis = new NumberAxis();
+        yAxis.setLabel("Number");
+
+        //grafik.setTitle("Comparison between Car Rental Prices");
+
+        XYChart.Series dataSeries1 = new XYChart.Series();
+        dataSeries1.getData().add(new XYChart.Data("0-1.99", x1));
+        dataSeries1.getData().add(new XYChart.Data("2-3.99", x2));
+        dataSeries1.getData().add(new XYChart.Data("4-5.99", x3));
+        dataSeries1.getData().add(new XYChart.Data("6-7.99", x4));
+        dataSeries1.getData().add(new XYChart.Data("8-9.99", x5));
+        dataSeries1.getData().add(new XYChart.Data("10+", x6));
+
+        grafik.getData().add(dataSeries1);
+
+
+
 
     }
 
@@ -106,7 +175,7 @@ public class homepageController implements Initializable {
         TreeItem<String> item = (TreeItem<String>) treeView.getSelectionModel().getSelectedItem();
 
         if(item != null) {
-            System.out.println(item.getValue());
+            //System.out.println(item.getValue());
             currentOption = item.getValue();
 
             if(currentOption.equals("Add a customer") ) {
@@ -157,8 +226,12 @@ public class homepageController implements Initializable {
             }else if(currentOption.equals("Search an employee")) {
                 label.setText("To perform a function about customer go to EMPLOYEES page in the left corner ");
 
-            }else if(currentOption.equals("Log out")) {
-                label.setText("To log out go to SETTINGS page in the left corner ");
+            }else if(currentOption.equals("Logout")) {
+                label.setText("To log out go to LOGOUT page in the left corner ");
+            }else if(currentOption.equals("Change Password")) {
+                label.setText("To change password go to SETTINGS page in the left corner ");
+            }else if(currentOption.equals("Print a lease")) {
+                label.setText("To print a lease go to LEASES page in the left corner ");
             }
         }
 
@@ -230,7 +303,8 @@ public class homepageController implements Initializable {
 
     }
 
-
+    public void fillGraphic() {
+    }
 
 
 

@@ -167,41 +167,51 @@ public class employeesController implements Initializable {
 
 
         DatabaseConnection connectNow = new DatabaseConnection();
+        LoginController loginController = new LoginController();
+        String username = loginController.getUsername();
+        if(!connectNow.getRolle(username).equals("manager")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Not the Manager");
+            alert.setHeaderText("You do not have the permission to do this function.");
+            alert.setContentText("Please stop trying!");
+            alert.showAndWait();
+        }else {
+            int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+            Employee selectedItem = tableView.getSelectionModel().getSelectedItem();
 
 
-        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-        Employee selectedItem = tableView.getSelectionModel().getSelectedItem();
+
+            if (selectedIndex >= 0) {
+                EmployeeEditController employeeEditController = new EmployeeEditController();
+                //System.out.println(selectedItem);
+                employeeEditController.setEmployee(selectedItem);
+
+                try {
+                    Parent parent = FXMLLoader.load(getClass().getResource("EmployeeEditDialog.fxml"));
+                    Scene scene  = new Scene(parent);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.initStyle(StageStyle.UTILITY);
+                    stage.show();
+
+                }catch (IOException ioException) {
+                    ioException.printStackTrace();
+                    ioException.getCause();
+                }
 
 
 
-        if (selectedIndex >= 0) {
-            EmployeeEditController employeeEditController = new EmployeeEditController();
-            //System.out.println(selectedItem);
-            employeeEditController.setEmployee(selectedItem);
-
-            try {
-                Parent parent = FXMLLoader.load(getClass().getResource("EmployeeEditDialog.fxml"));
-                Scene scene  = new Scene(parent);
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.initStyle(StageStyle.UTILITY);
-                stage.show();
-
-            }catch (IOException ioException) {
-                ioException.printStackTrace();
-                ioException.getCause();
+            }else {
+                // Nothing selected.
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("No Selection");
+                alert.setHeaderText("No Employee Selected");
+                alert.setContentText("Please select a employee in the table.");
+                alert.showAndWait();
             }
 
-
-
-        }else {
-            // Nothing selected.
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No Employee Selected");
-            alert.setContentText("Please select a employee in the table.");
-            alert.showAndWait();
         }
+
 
 
 
@@ -210,20 +220,31 @@ public class employeesController implements Initializable {
 
     public void switchtoAddDialog(ActionEvent event) throws IOException {
 
+        DatabaseConnection connectNow = new DatabaseConnection();
+        LoginController loginController = new LoginController();
+        String username = loginController.getUsername();
+        if(!connectNow.getRolle(username).equals("manager")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Not the Manager");
+            alert.setHeaderText("You do not have the permission to do this function.");
+            alert.setContentText("Please stop trying!");
+            alert.showAndWait();
+        }else {
+            try {
+                Parent parent = FXMLLoader.load(getClass().getResource("EmployeeAddDialog.fxml"));
+                Scene scene  = new Scene(parent);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
 
-
-        try {
-            Parent parent = FXMLLoader.load(getClass().getResource("EmployeeAddDialog.fxml"));
-            Scene scene  = new Scene(parent);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-
-        }catch(IOException ioException) {
-            ioException.printStackTrace();
-            ioException.getCause();
+            }catch(IOException ioException) {
+                ioException.printStackTrace();
+                ioException.getCause();
+            }
         }
+
+
 
 
     }
@@ -235,27 +256,41 @@ public class employeesController implements Initializable {
         //tekrardan eklerken onlarla bağlantısını
         //da tekrardan ayarlamak gerekiyo yoksa hata veriyo
 
-
-
         DatabaseConnection connectNow = new DatabaseConnection();
 
 
-        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-        Employee selectedItem = tableView.getSelectionModel().getSelectedItem();
+        LoginController loginController = new LoginController();
+        String username = loginController.getUsername();
+        //System.out.println(connectNow.getRolle(username));
 
-        if (selectedIndex >= 0) {
-            tableView.getItems().remove(selectedIndex);
-            connectNow.deleteEmployee(selectedItem);
-
-        }else {
-            // Nothing selected.
+        if(!connectNow.getRolle(username).equals("manager")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No Employee Selected");
-            alert.setContentText("Please select a employee in the table.");
+            alert.setTitle("Not the Manager");
+            alert.setHeaderText("You do not have the permission to do this function.");
+            alert.setContentText("Please stop trying!");
             alert.showAndWait();
+        }else {
+            int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+            Employee selectedItem = tableView.getSelectionModel().getSelectedItem();
+
+            if (selectedIndex >= 0) {
+                tableView.getItems().remove(selectedIndex);
+                connectNow.deleteEmployee(selectedItem);
+
+            }else {
+                // Nothing selected.
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("No Selection");
+                alert.setHeaderText("No Employee Selected");
+                alert.setContentText("Please select a employee in the table.");
+                alert.showAndWait();
+            }
+            refreshTable();
         }
-        refreshTable();
+
+
+
+
 
 
 

@@ -19,7 +19,7 @@ public class Car {
     private int maxPerson; //capacity
     private CarAddress carAddress;
     private ArrayList<Lease> leases;
-    private double priceProKm;
+    private double priceProDay;
     private String insuranceCompName;
     private String insuranceCompPhoneNumber;
     private double currentKmstatus;
@@ -33,7 +33,7 @@ public class Car {
         this.licenseNumber = licenseNumber;
     }
 
-    public Car(int id, String name, String make, String model, String licenseNumber, String year, boolean available, Customer customer, Image image, int maxPerson, CarAddress carAddress, ArrayList<Lease> leases, double priceProKm, String insuranceCompName, String insuranceCompPhoneNumber, double currentKmstatus, String nextMaintenance, double fuelIndicator) {
+    public Car(int id, String name, String make, String model, String licenseNumber, String year, boolean available, Customer customer, Image image, int maxPerson, CarAddress carAddress, ArrayList<Lease> leases, double priceProDay, String insuranceCompName, String insuranceCompPhoneNumber, double currentKmstatus, String nextMaintenance, double fuelIndicator) {
         this.id = id;
         this.name = name;
         this.make = make;
@@ -46,7 +46,7 @@ public class Car {
         this.maxPerson = maxPerson;
         this.carAddress = carAddress;
         this.leases = leases;
-        this.priceProKm = priceProKm;
+        this.priceProDay = priceProDay;
         this.insuranceCompName = insuranceCompName;
         this.insuranceCompPhoneNumber = insuranceCompPhoneNumber;
         this.currentKmstatus = currentKmstatus;
@@ -151,12 +151,12 @@ public class Car {
         return leases;
     }
 
-    public void setPriceProKm(double priceProKm) {
-        this.priceProKm = priceProKm;
+    public void setPriceProDay(double priceProDay) {
+        this.priceProDay = priceProDay;
     }
 
-    public double getPriceProKm() {
-        return priceProKm;
+    public double getPriceProDay() {
+        return priceProDay;
     }
 
     public void setInsuranceCompName(String insuranceCompName) {
@@ -213,7 +213,15 @@ public class Car {
         return "Id: "+ id +"\n" +name + "\n"  + licenseNumber ;
     }
 
+    public String toString3() {
+        return "Id: "+ id +"\nName: " +name + " "+year+" \nLicense Number: "  + licenseNumber ;
+    }
     public String toString2() {
-        return  make  + "-"+ model + "(" + year +") \n" + maxPerson +  " Seats \nPrice Per Km: " + priceProKm + " £";
+        if(this.isAvailable()) {
+            return  make  + "-"+ model + "(" + year +") \n" + maxPerson +  " Seats \nPrice Per Day: " + priceProDay + " £\n"+"Available: Yes";
+        }else {
+            return  make  + "-"+ model + "(" + year +") \n" + maxPerson +  " Seats \nPrice Per Day: " + priceProDay + " £\n"+"Available: No";
+        }
+
     }
 }

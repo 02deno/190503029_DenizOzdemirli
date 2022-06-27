@@ -115,6 +115,9 @@ public class Customer extends Person {
         return  "Id: " + id + "\nName: " + name + "\nSurname: " + surname + "\n";
     }
 
+    public String toString2() {
+        return  "Id: " + id + "\nName: " + name + "\nSurname: " + surname + "\nPhone Number: " + phoneNumber1+"\n";
+    }
 
     public void returnCar() {
         returned = true;

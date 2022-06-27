@@ -134,7 +134,7 @@ public class CustomerEditController implements Initializable {
             //0532-123-45-67
             errorMessage += "No valid phonenumber1!\n";
         }
-        if (phoneNumber2Field.getText() == null || phoneNumber2Field.getText().length() == 0  || phoneNumber1Field.getText().length() != 11) {
+        if (phoneNumber2Field.getText() == null || phoneNumber2Field.getText().length() == 0  || phoneNumber2Field.getText().length() != 11) {
             errorMessage += "No valid phonenumber2!\n";
         }
         if (cardTypeField.getText() == null || cardTypeField.getText().length() == 0) {
